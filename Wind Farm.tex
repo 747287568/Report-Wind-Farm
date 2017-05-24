@@ -17,6 +17,8 @@
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
 \usepackage{booktabs} % Horizontal rules in tables
 
+\usepackage{graphicx}
+
 \usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
 
 \usepackage{enumitem} % Customized lists
@@ -82,13 +84,13 @@
 	
 	\section{Introduction}
 	
-	\lettrine[nindent=0em,lines=3]To minimize cost of wind energy and to harvest the most out of resource rich locations, wind farms are constructed, characterized by a large concentration of wind turbines. An inherent side effect of wind turbine however is a wake. When wind turbines are placed in close proximity of each other in a wind farm, a wake can have negative effects. A wake forms behind an upwind wind turbine and can have severe effect on the power production and loads of the downwind turbine.
+	\lettrine[nindent=0em,lines=3]To minimize cost of wind energy and to efficiently use resource rich locations, wind farms are constructed, characterized by a large concentration of wind turbines. An inherent side effect of wind turbine however is a wake. When wind turbines are placed in close proximity of each other in a wind farm, a wake can have negative effects. A wake forms behind an upwind wind turbine and can have severe effects on the power production and loads of the downwind turbine.
 
 With an increasing role of wind energy in Europe's energy production (nationale energieverkenning) it is important for wind farms to be able to meet the demands of the power grid (Tande ). Controlling the power output of a wind farm is essential because an overload of energy can decrease the stability of the power system (Tande). Currently, most wind farms operate based on 'greedy control', meaning that the individual turbines always try to deliver maximum power. This causes a problem when the power demand is low and the dependency on the wind energy is high, resulting in an overload of the power system. Active power control can solve this problem, by regulating the power output of a wind farm.
 
 Misschien ergens nog iets over een wake? Over wind farms algemeen?
 
-There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine (verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads optimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
+There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can deflect a wake. This can be used as a method to steer a wake away from a downwind turbine, this would reduce the loads and power output. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads optimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
 
 Previous studies have mainly focused on optimizing the power output, rather than controlling the power output (verwijzingen naar studies die dit hebben gedaan).  Other studies focus on power optimization, while also taking the loads into account, so that an optimum is found between the two (verwijzing naar wie dit heft gedaan). The use of axial induction in optimizing power control has been marginally studied. Active power control through a combination of yaw control and axial induction control while minimizing loads is still novel.
 
@@ -97,11 +99,22 @@ This paper will focus on the optimization of active power control and loads by m
 Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven worden als de rest af is.
 	
 \begin{equation}
+\label{eq:P}
+P_i = \frac{1}{2}\rho A_i C_p(a_i, \gamma_i)U_i^3
+\end{equation}
+Where,
+\begin{equation}
+\label{eq:Cp}
+C_p(a_i, \gamma_i) = 4a_i(1-a_i)^2\eta cos(\gamma_i)^{pP}
+\end{equation}
+
+Let D denote bla, m bla, blabla.The wake is simulated using
+
+\begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max\left( {D_i + 2k_em_{e,q}([x - X_i],0} \right)
 \end{equation}
 
-Let D denote bla, m bla, blabla.The wake is simulated using
 
 \begin{equation}
 \label{eq:Uw}
@@ -113,9 +126,16 @@ U_{w,i}(x,y) = U_i\left( {1-2a_ic_i(x,y)} \right)
 c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 \end{equation}
 
+\begin{equation}
+\label{eq:mU}
+m_{U,q}(\gamma_i) =  \frac{M_{U,q}}{cos(a_U+b_U\gamma_i)}
+\end{equation}
 
 The FLORIS model will be discussed in section \ref{sec:method}.
 	
+
+
+
 	%------------------------------------------------
 	
 	\section{Method}
@@ -134,7 +154,7 @@ The FLORIS model will be discussed in section \ref{sec:method}.
 
 
 %\noindent
-\textit{Flow field}: FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (numbers). The wake is divided into three zones blab la as described in FLORIS-gedeelte. A real wake will not have discrete zones (Plaatje van dicrete wake), but a more fluent transition between the wake zones (Plaatje van de gaussian wake). To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred (Bastankah). The Gaussian distribution is calculated with equation (number), where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone which is calculated with equation (number). Values $\sigma_y$ and $\sigma_z$, in equation (number), reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. Both these standard deviations are linked to the spread of the Gaussian function. The standard deviations are linked to the outer wake zones, which are calculated by equations (numbers). In the model, $\sigma_y$ and $\sigma_z$ are a function of the diameter of the outer wake zone,  $D_{w,i,q=3}$, which is divided by a constant. This constant is equal to 4, which results in a standard deviation of two. As a result, the central 95.45\% of the values in the Gaussian distribution are taken. 
+\textit{Inflow files, Flow field}: FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (numbers). The wake is divided into three zones blab la as described in FLORIS-gedeelte. A real wake will not have discrete zones (Plaatje van dicrete wake), but a more fluent transition between the wake zones (Plaatje van de gaussian wake). To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred (Bastankah). The Gaussian distribution is calculated with equation (number), where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone which is calculated with equation (number). Values $\sigma_y$ and $\sigma_z$, in equation (number), reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. Both these standard deviations are linked to the spread of the Gaussian function. The standard deviations are linked to the outer wake zones, which are calculated by equations (numbers). In the model, $\sigma_y$ and $\sigma_z$ are a function of the diameter of the outer wake zone,  $D_{w,i,q=3}$, which is divided by a constant. This constant is equal to 4, which results in a standard deviation of two. As a result, the central 95.45\% of the values in the Gaussian distribution are taken. 
 Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point (Firtin). This velocity distribution is calculated with equation (number), where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient a is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground (Firtin). The wind shear is implemented in the flow field.
 
 
@@ -163,7 +183,11 @@ These different conditions are described by the ranges of the parameters (see Ta
 
 %\noindent
 \textit{Optimization}: Game Theory
-
+\begin{figure}
+  \includegraphics[width=\linewidth]{OptimizationProcess.png}
+  \caption{A boat.}
+  \label{fig:optim}
+\end{figure}
 	\begin{itemize}
 		\item Here we introduce FLORIS, FAST, MLife
 		\item FLORIS: why FLORIS compared to other software? How does FLORIS work? How do we use it?
