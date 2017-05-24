@@ -96,12 +96,23 @@ This paper will focus on the optimization of active power control and loads by m
 
 Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven worden als de rest af is.
 	
+\begin{equation}
+\label{eq:Dw}
+D_{w,i,q}(x) = max\left( {D_i + 2k_em_{e,q}([x - X_i],0} \right)
+\end{equation}
+
 Let D denote bla, m bla, blabla.The wake is simulated using
+
+\begin{equation}
+\label{eq:Uw}
+U_{w,i}(x,y) = U_i\left( {1-2a_ic_i(x,y)} \right)
+\end{equation}
 
 \begin{equation}
 \label{eq:c}
 c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 \end{equation}
+
 
 The FLORIS model will be discussed in section \ref{sec:method}.
 	
@@ -113,7 +124,7 @@ The FLORIS model will be discussed in section \ref{sec:method}.
 	Short introduction on method 
 
 %\noindent
-	\textit{FLORIS}: The FLOw Redirection and Induction in Steady state (FLORIS) model gives a two-dimensional approximation of the steady-state effect of yaw misalignment and axial induction. It creates a wake model with equation (\ref{eq:c}  Wilson 3-3 tot 3-6). The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (see Plaatje). FLORIS gives a power output for each turbine, which for turbine i results in equation (Wilson 3-1). Although less accurate than a three-dimensional approximation, such as used in SOFWA, computation time is much faster for FLORIS. As a result, FLORIS can be used on-site optimization. 
+	\textit{FLORIS}: The FLOw Redirection and Induction in Steady state (FLORIS) model gives a two-dimensional approximation of the steady-state effect of yaw misalignment and axial induction. It creates a wake model with equation (\ref{eq:c}  Wilson 3-3 tot 3-6). The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (see Plaatje). FLORIS gives a power output for each turbine, which for turbine i results in equation (Wilson 3-1). Although less accurate than a three-dimensional approximation, such as used in SOFWA, computation time is much faster for FLORIS. As a result, FLORIS can be used for on-site optimization. 
 
 
 
@@ -148,7 +159,7 @@ Note: Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
 
 %\noindent
 \textit{LUT}: To reduce computational time during optimization a look-up table (LUT) is created. The LUT is created using FAST and MLife, and it encompasses a wide variety of wind field conditions. 
-These different conditions are described by the ranges of the parameters (see Table \ref{tab:pars}). The parameters are wake characteristics and can be extracted from FLORIS. The parameters chosen for the LUT are diameter of outer wake zone (Dwake), freestream wind speed (U), yaw of the turbine (yaw), and the center to center distance between the center of the turbine and the center of the wake (y wake).. The parameters are used to construct a flow field. Misschien nog een stukje over waarom deze parameters? Such that a four-dimensional LUT is created. The output of the LUT are the DELs. The LUT generation is time consuming, as such, it cannot account for all integer values of the parameters. The step-size of these parameters is chosen such that interpolation will give a representative result. For different parameters, different step-sizes are selected, as shown in Table (?verwijzing naar een table). With the use of the pre-calculated LUT, the optimization can run more swiftly, and is able to be used on-site.
+These different conditions are described by the ranges of the parameters (see Table \ref{tab:pars}). The parameters are wake characteristics and can be extracted from FLORIS. The parameters chosen for the LUT are diameter of outer wake zone (Dwake), freestream wind speed (U), yaw of the turbine (yaw), and the center to center distance between the center of the turbine and the center of the wake (y wake).. The parameters are used to construct a flow field. Misschien nog een stukje over waarom deze parameters? Such that a four-dimensional LUT is created. The output of the LUT are the DELs. The LUT generation is time consuming, as such, it cannot account for all integer values of the parameters. The step-size of these parameters is chosen such that interpolation will give a representative result. For different parameters, different step-sizes are selected, as shown in Table (see Table \ref{tab:pars}). With the use of the pre-calculated LUT, the optimization can run more swiftly, and is able to be used on-site.
 
 %\noindent
 \textit{Optimization}: Game Theory
