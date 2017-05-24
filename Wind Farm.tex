@@ -88,8 +88,6 @@
 
 With an increasing role of wind energy in Europe's energy production (nationale energieverkenning) it is important for wind farms to be able to meet the demands of the power grid (Tande ). Controlling the power output of a wind farm is essential because an overload of energy can decrease the stability of the power system (Tande). Currently, most wind farms operate based on 'greedy control', meaning that the individual turbines always try to deliver maximum power. This causes a problem when the power demand is low and the dependency on the wind energy is high, resulting in an overload of the power system. Active power control can solve this problem, by regulating the power output of a wind farm.
 
-Misschien ergens nog iets over een wake? Over wind farms algemeen?
-
 There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can deflect a wake. This can be used as a method to steer a wake away from a downwind turbine, this would reduce the loads and power output. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads optimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
 
 Previous studies have mainly focused on optimizing the power output, rather than controlling the power output (verwijzingen naar studies die dit hebben gedaan).  Other studies focus on power optimization, while also taking the loads into account, so that an optimum is found between the two (verwijzing naar wie dit heft gedaan). The use of axial induction in optimizing power control has been marginally studied. Active power control through a combination of yaw control and axial induction control while minimizing loads is still novel.
@@ -115,7 +113,6 @@ Let D denote bla, m bla, blabla.The wake is simulated using
 D_{w,i,q}(x) = max\left( {D_i + 2k_em_{e,q}([x - X_i],0} \right)
 \end{equation}
 
-
 \begin{equation}
 \label{eq:Uw}
 U_{w,i}(x,y) = U_i\left( {1-2a_ic_i(x,y)} \right)
@@ -130,6 +127,13 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 \label{eq:mU}
 m_{U,q}(\gamma_i) =  \frac{M_{U,q}}{cos(a_U+b_U\gamma_i)}
 \end{equation}
+
+\begin{figure}
+\label{fig:wake}
+  \includegraphics[width=\linewidth]{WakeFLORIS.png}
+  \caption{A boat.}
+  \label{fig:optim}
+\end{figure}
 
 The FLORIS model will be discussed in section \ref{sec:method}.
 	
