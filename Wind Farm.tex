@@ -110,7 +110,6 @@ Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven w
 \label{fig:wake}
   \includegraphics[width=\linewidth]{WakeFLORIS.png}
   \caption{A boat.}
-  \label{fig:optim}
 \end{figure}
 The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (Figure\ref{fig:wake}).
 The size of the wake diameter $D_{w,q,i}$ increases proportionally to the the downwind distance ($x$). Let $D_i$ denote the diameter of the $i$th turbine, $k_e$ a coefficient that describes expansion of the zones (Gebraad), $m_{e,q}$ expansion factor. The diameter of the wake diameter is computed by,
@@ -150,7 +149,6 @@ The values of the different parametric parameters are found in Table \ref{tab:pa
 	\label{tab:para}
 	\caption{Overview of parametric parameters, with, the wake expansion factor for zone $i$ $m_{e,i}$, wake decay factor for zone $i$ $m_{U,i}$, wake decay parameters $a_U$ and $b_U$.}
 	\centering
-	\label{tab:pars}
 	\begin{tabular}{ll}
 	\hline
 	Expansion & Velocity  \\ 
@@ -176,8 +174,18 @@ Note: Table adjusted from Gebraad(nog correcte verwijzing toevoegen)
 
 
 %\noindent
-\textit{Inflow files, Flow field}: FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (numbers). The wake is divided into three zones blab la as described in FLORIS-gedeelte. A real wake will not have discrete zones (Plaatje van dicrete wake), but a more fluent transition between the wake zones (Plaatje van de gaussian wake). To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred (Bastankah). The Gaussian distribution is calculated with equation (number), where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone which is calculated with equation (number). Values $\sigma_y$ and $\sigma_z$, in equation (number), reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. Both these standard deviations are linked to the spread of the Gaussian function. The standard deviations are linked to the outer wake zones, which are calculated by equations (numbers). In the model, $\sigma_y$ and $\sigma_z$ are a function of the diameter of the outer wake zone,  $D_{w,i,q=3}$, which is divided by a constant. This constant is equal to 4, which results in a standard deviation of two. As a result, the central 95.45\% of the values in the Gaussian distribution are taken. 
-Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point (Firtin). This velocity distribution is calculated with equation (number), where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground (Firtin). The wind shear is implemented in the flow field.
+\textit{Inflow files, Flow field}: FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations ((\ref{eq:Dw} to \ref{eq:Uw})). The wake is divided into three zones as described is in in the section on FLORIS. A real wake will not have discrete zones (Plaatje van dicrete wake), but a more fluent transition between the wake zones (Plaatje van de gaussian wake). To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred (Bastankah). The Gaussian distribution is calculated as followed, 
+\begin{equation}
+\label{eq:gaus}
+G(x, y) = A e^{-\frac{y^2}{2\sigma_y} + \frac{z^2}{2\sigma_z}}
+\end{equation}
+where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone which is calculated with equation \ref{eq:Dw}. Values $\sigma_y$ and $\sigma_z$, in equation \ref{eq:gaus}, reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. Both these standard deviations are linked to the spread of the Gaussian function. The standard deviations are linked to the outer wake zones, which are calculated by equations (numbers). In the model, $\sigma_y$ and $\sigma_z$ are a function of the diameter of the outer wake zone,  $D_{w,i,q=3}$, which is divided by a constant. This constant is equal to 4, which results in a standard deviation of two. As a result, the central 95.45\% of the values in the Gaussian distribution are taken. 
+Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point (Firtin). This velocity distribution is calculated with, 
+\begin{equation}
+\label{eq:shear}
+v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
+\end{equation}
+where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground (Firtin). The wind shear is implemented in the flow field.
 
 
 \begin{table}[h]
