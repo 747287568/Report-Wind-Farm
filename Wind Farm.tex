@@ -88,14 +88,12 @@
 
 With an increasing role of wind energy in Europe's energy production (nationale energieverkenning) it is important for wind farms to be able to meet the demands of the power grid (Tande ). Controlling the power output of a wind farm is essential because an overload of energy can decrease the stability of the power system (Tande). Currently, most wind farms operate based on 'greedy control', meaning that the individual turbines always try to deliver maximum power. This causes a problem when the power demand is low and the dependency on the wind energy is high, resulting in an overload of the power system. Active power control can solve this problem, by regulating the power output of a wind farm.
 
-There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can deflect a wake. This can be used as a method to steer a wake away from a downwind turbine, this would reduce the loads and power output. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads optimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
+There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (beetje gekke zin)(verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can deflect a wake. This can be used as a method to redirect a wake from a downwind turbine, this would reduce the loads and increase power output of the downwind turbine. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads minimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
 
-Previous studies have mainly focused on optimizing the power output, rather than controlling the power output (verwijzingen naar studies die dit hebben gedaan).  Other studies focus on power optimization, while also taking the loads into account, so that an optimum is found between the two (verwijzing naar wie dit heft gedaan). The use of axial induction in optimizing power control has been marginally studied. Active power control through a combination of yaw control and axial induction control while minimizing loads is still novel.
+Previous studies have mainly focused on optimizing the power output, rather than controlling the power output (verwijzingen naar studies die dit hebben gedaan).  Other studies focus on power optimization, while also taking the loads into account, so that an optimum is found between the two (verwijzing naar wie dit heft gedaan). The use of axial induction in optimizing power control has been marginally studied(heb hier nog geen goede bron voor kunnen vinden). Active power control through a combination of yaw control and axial induction control while minimizing loads is still novel.
 
-This paper will focus on the optimization of active power control and loads by means of yaw misalignment and axial induction. In addition, a method is developed so that on-site power control can be realized.
+This paper will focus on the optimization of active power control and loads by means of yaw control and axial induction control. In addition, a method is developed so that on-site power control can be realized.
 
-Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven worden als de rest af is.
-	
 \begin{equation}
 \label{eq:P}
 P_i = \frac{1}{2}\rho A_i C_p(a_i, \gamma_i)U_i^3
@@ -137,7 +135,7 @@ m_{U,q}(\gamma_i) =  \frac{M_{U,q}}{cos(a_U+b_U\gamma_i)}
 
 The FLORIS model will be discussed in section \ref{sec:method}.
 	
-
+Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven worden als de rest af is.
 
 
 	%------------------------------------------------
@@ -148,7 +146,7 @@ The FLORIS model will be discussed in section \ref{sec:method}.
 	Short introduction on method 
 
 %\noindent
-	\textit{FLORIS}: The FLOw Redirection and Induction in Steady state (FLORIS) model gives a two-dimensional approximation of the steady-state effect of yaw misalignment and axial induction. It creates a wake model with equation (\ref{eq:c}  Wilson 3-3 tot 3-6). The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (see Plaatje). FLORIS gives a power output for each turbine, which for turbine i results in equation (Wilson 3-1). Although less accurate than a three-dimensional approximation, such as used in SOFWA, computation time is much faster for FLORIS. As a result, FLORIS can be used for on-site optimization. 
+	\textit{FLORIS}: The FLOw Redirection and Induction in Steady state (FLORIS) model gives a two-dimensional approximation of the steady-state effect of yaw misalignment and axial induction. It creates a wake model with equation (\ref{eq:c}  Wilson 3-3 tot 3-6). The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (see Plaatje). FLORIS gives a power output for each turbine, which for turbine i results in equation (Wilson 3-1). Although less accurate than  SOFWA high fidelity CFD simulation, computation time is much faster for FLORIS. As a result, FLORIS can be used for on-site optimization. 
 
 
 
@@ -159,7 +157,7 @@ The FLORIS model will be discussed in section \ref{sec:method}.
 
 %\noindent
 \textit{Inflow files, Flow field}: FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (numbers). The wake is divided into three zones blab la as described in FLORIS-gedeelte. A real wake will not have discrete zones (Plaatje van dicrete wake), but a more fluent transition between the wake zones (Plaatje van de gaussian wake). To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred (Bastankah). The Gaussian distribution is calculated with equation (number), where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone which is calculated with equation (number). Values $\sigma_y$ and $\sigma_z$, in equation (number), reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. Both these standard deviations are linked to the spread of the Gaussian function. The standard deviations are linked to the outer wake zones, which are calculated by equations (numbers). In the model, $\sigma_y$ and $\sigma_z$ are a function of the diameter of the outer wake zone,  $D_{w,i,q=3}$, which is divided by a constant. This constant is equal to 4, which results in a standard deviation of two. As a result, the central 95.45\% of the values in the Gaussian distribution are taken. 
-Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point (Firtin). This velocity distribution is calculated with equation (number), where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient a is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground (Firtin). The wind shear is implemented in the flow field.
+Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point (Firtin). This velocity distribution is calculated with equation (number), where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground (Firtin). The wind shear is implemented in the flow field.
 
 
 \begin{table}[h]
@@ -167,7 +165,7 @@ Wind shear can cause an important difference in velocity speeds between the roto
 	\caption{Overview of the minimum value, maximum value, and step size of the parameters diameter of outer wake zone (Dwake), freestream wind speed (U), yaw of the turbine (yaw), and the center to center distance between the center of the turbine and the center of the wake (y wake).}
 	\centering
 	\label{tab:pars}
-	\begin{tabular}{lrrr}
+	\begin{tabular}{lccc}
 	\hline
 	 & Minimum & Maximum & Step-size \\ 
 	\hline
@@ -179,6 +177,26 @@ Wind shear can cause an important difference in velocity speeds between the roto
 	\end{tabular}
 
 Note: Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
+\end{table}
+
+\begin{table}[h]
+	%\renewcommand{\arraystretch}{1.3} 
+	\caption{Overview of parametric parameters, with, the wake expansion factor for zone $i$ $m_{e,i}$, wake decay factor for zone $i$ $m_{U,i}$, wake decay parameters $a_U$ and $b_U$.}
+	\centering
+	\label{tab:pars}
+	\begin{tabular}{ll}
+	\hline
+	Expansion & Velocity  \\ 
+	\hline
+	$k_d \qquad \quad 0.15$ & $M_{U,1} \quad 0.5$ \\
+	$m_{e,1} \quad -0.5$ & $M_{U,2} \quad 1$ \\
+	$m_{e,2} \qquad 0.22$ & $M_{U,3} \quad 5.5$ \\
+	$m_{e,3} \qquad 1$ & $a_U \qquad 5$ \\
+	& $b_U \qquad 1.66$ \\
+	\hline
+	\end{tabular}
+
+Note: Table adjusted from Gebraad(nog correcte verwijzing toevoegen)
 \end{table}
 
 %\noindent
