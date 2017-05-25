@@ -88,9 +88,9 @@
 
 Deze twee stukken moeten nog aan elkaar verbonden worden op de een of andere manier
 
-With an increasing role of wind energy in Europe's energy production (nationale energieverkenning) it is important for wind farms to be able to meet the demands of the power grid (Tande ). Controlling the power output of a wind farm is essential because an overload of energy can decrease the stability of the power system (Tande). Currently, most wind farms operate based on 'greedy control', meaning that the individual turbines always try to deliver maximum power. This causes a problem when the power demand is low and the dependency on the wind energy is high, resulting in an overload of the power system. Active power control can solve this problem, by regulating the power output of a wind farm.
+With an increasing role of wind energy in Europe's energy production (nationale energieverkenning) it is important for wind farms to be able to meet the demands of the power grid \cite{Tande2003}. Controlling the power output of a wind farm is essential because an overload of energy can decrease the stability of the power system \cite{Tande2003}. Currently, most wind farms operate based on 'greedy control', meaning that the individual turbines always try to deliver maximum power. This causes a problem when the power demand is low and the dependency on the wind energy is high, resulting in an overload of the power system. Active power control can solve this problem, by regulating the power output of a wind farm.
 
-There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (beetje gekke zin)(verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan (Zalkind, Kanev). In addition, yawing a turbine can deflect a wake. This can be used as a method to redirect a wake from a downwind turbine, this would reduce the loads and increase power output of the downwind turbine. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine (Wilson, Van Dijk, Bastankah). As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads minimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
+There are several methods of active power control in a wind farm, two of which will be discussed in this paper, that is, yaw control and axial induction control. Yaw control can be used as a method to reduce the power output of a single wind turbine and as a method to increase power output of a wind farm and reduce loads (beetje gekke zin)(verwijzing). A disadvantage of yawing is an increase of the load on the turbine, and thus reducing its lifespan \cite{Zalkind2016,Kanev2017}. In addition, yawing a turbine can deflect a wake. This can be used as a method to redirect a wake from a downwind turbine, this would reduce the loads and increase power output of the downwind turbine. However, under unfavorable conditions it can result in an asymmetrical overlap of the wake on the downwind turbine. This can significantly increase the loads of the downwind turbine \cite{Wilson2017,Dijk2016,Bastankhah2016}. As yawing of the turbine and the deflection of a wake can cause additional loads on the turbines of a wind farm, a trade of must be made between active power control and loads minimization. Axial induction can control the power output by varying the axial induction factor. Loads that are introduced by axial induction will not be discussed in this paper. 
 
 Previous studies have mainly focused on optimizing the power output, rather than controlling the power output (verwijzingen naar studies die dit hebben gedaan).  Other studies focus on power optimization, while also taking the loads into account, so that an optimum is found between the two (verwijzing naar wie dit heft gedaan). The use of axial induction in optimizing power control has been marginally studied(heb hier nog geen goede bron voor kunnen vinden). Active power control through a combination of yaw control and axial induction control while minimizing loads is still novel.
 
@@ -109,12 +109,12 @@ Hier nog een overzicht van wat er in paper te vinden is. Moet later geschreven w
 %\noindent
 	\textit{FLORIS}: The FLOw Redirection and Induction in Steady state (FLORIS) model gives a two-dimensional approximation of the steady-state effect of yaw misalignment and axial induction. It creates a wake model with equation (\ref{eq:Dw} to \ref{eq:Uw}). 
 \begin{figure}
-\label{fig:wake}
   \includegraphics[width=\linewidth]{WakeFLORIS.png}
   \caption{A boat.}
+\label{fig:wake}
 \end{figure}
 The wake is divided into three zones, $q_1$ to $q_3$, where $q_1$ refers to the near wake, $q_2$ to the far wake, and $q_3$ to the mixing zone (Figure\ref{fig:wake}).
-The size of the wake diameter $D_{w,q,i}$ increases proportionally to the the downwind distance ($x$). Let $D_i$ denote the diameter of the $i$th turbine, $k_e$ a coefficient that describes expansion of the zones (Gebraad), $m_{e,q}$ expansion factor. The diameter of the wake diameter is computed by,
+The size of the wake diameter $D_{w,q,i}$ increases proportionally to the the downwind distance ($x$). Let $D_i$ denote the diameter of the $i$th turbine, $k_e$ a coefficient that describes expansion of the zones \cite{Gebraad2016}, $m_{e,q}$ expansion factor. The diameter of the wake diameter is computed by,
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max\left( {D_i + 2k_em_{e,q}([x - X_i],0} \right)
@@ -148,7 +148,6 @@ Where $\eta$ and $pP$ are power modeling parameters.
 The values of the different parametric parameters are found in Table \ref{tab:para}
 \begin{table}[h]
 	%\renewcommand{\arraystretch}{1.3} 
-	\label{tab:para}
 	\caption{Overview of parametric parameters, with, the wake expansion factor for zone $i$ $m_{e,i}$, wake decay factor for zone $i$ $m_{U,i}$, wake decay parameters $a_U$ and $b_U$.}
 	\centering
 	\begin{tabular}{ll}
@@ -161,9 +160,10 @@ The values of the different parametric parameters are found in Table \ref{tab:pa
 	$m_{e,3} \qquad 1$ & $a_U \qquad 5$ \\
 	& $b_U \qquad 1.66$ \\
 	\hline
+	\label{tab:para}
 	\end{tabular}
 
-Note: Table adjusted from Gebraad(nog correcte verwijzing toevoegen)
+Note: Table adjusted from Gebraad \cite{Gebraad2016}(nog correcte verwijzing toevoegen)
 \end{table}
 
  Although less accurate than  SOFWA high fidelity CFD simulation, computation time is much faster for FLORIS. As a result, FLORIS can be used for on-site optimization. 
@@ -221,6 +221,7 @@ These different conditions are described by the ranges of the parameters (see Ta
   \caption{not a boat}
   \label{fig:optim}
 \end{figure}
+
 	\begin{itemize}
 		\item Here we introduce FLORIS, FAST, MLife
 		\item FLORIS: why FLORIS compared to other software? How does FLORIS work? How do we use it?
@@ -291,12 +292,28 @@ These different conditions are described by the ranges of the parameters (see Ta
 	%----------------------------------------------------------------------------------------
 	
 	\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
-		
-		\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
-		Figueredo, A.~J. and Wolf, P. S.~A. (2009).
-		\newblock Assortative pairing and life history strategy - a cross-cultural
-		study.
-		\newblock {\em Human Nature}, 20:317--330.
+
+\bibitem{Tande2003}
+J. O. G. Tande. "Grid integration of wind farms," in Wind Energy, 2003
+
+\bibitem{Zalkind2016}
+ D. S. Zalkind and L. Y. Pao. "The fatigue loading effects of yaw control for wind plants," in American Control Conference (ACC), 2016
+
+\bibitem{Kanev2017} 
+S. K. Kanev and F. J. Savenije. "Active wake control: loads trends," in Wind Energy, 2017
+
+\bibitem{Wilson2017}
+B. Wilson. "Wind Farm Control: Robust Multi-Objective Optimization of a Wind Farm for Different Control Strategies," Unpublished Master's Thesis, 2017
+
+\bibitem{Dijk2016}
+M. T. van Dijk, J. W. van Wingerden, T. Ashuri, Y. Li, and M. A. Rotea. "Yaw-Misalignment and its Impact on Wind Turbine Loads and Wind Farm Power Output," in Journal of Physics: Conference Series, 2016
+
+\bibitem{Bastankhah2016}
+M. Bastankhah and F. Porté-Agel. "Experimental and theoretical study of wind turbine wakes in yawed conditions," in Journal of Fluid Mechanics, 2016
+
+\bibitem{Gebraad2016}
+P. M. O. Gebraad, F. W. Teeuwisse, J. W. Wingerden, P. A. Fleming, S. D. Ruben, J. R. Marden and L. Y. Pao. "Wind plant power optimization through yaw control using a parametric model for wake effects-a CFD simulation study," in Wind Energy, 2016
+
 		
 	\end{thebibliography}
 	
