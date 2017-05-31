@@ -131,6 +131,21 @@ Note: Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
 \textit{LUT}: To reduce computational time during optimization a look-up table (LUT) is created. The LUT is created using FAST and MLife, and it encompasses a wide variety of wind field conditions. 
 These different conditions are described by the ranges of the parameters (see Table \ref{tab:pars}). The parameters are wake characteristics and can be extracted from FLORIS. The parameters chosen for the LUT are diameter of outer wake zone (Dwake), freestream wind speed (U), yaw of the turbine (yaw), and the center to center distance between the center of the turbine and the center of the wake (y wake). The output of the LUT are the DELs. The LUT generation is time consuming, as such, it cannot account for all integer values of the parameters. The step-size of these parameters is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table (see Table \ref{tab:pars}). With the use of the pre-calculated LUT, the optimization can run more swiftly, and is able to be used on-site.
 
+\textit{verandwoording van de parameters}:
+
+The ranges and stepsizes chosen for the individual parameters are selected so the LUT contains all the neseccery data needed to be able to generate an complete and accurate (beeld/afschatting) of every posible flowprofile.
+
+this paper only looks at a 9 turbine case, for this case has a U range of 8to6m/s proven to be sufficient, lineair inperlopation is used to find values within these extremes. larger windfarms and different inflow wind velocities would require broadening these ranges.
+
+de Dwake is op zo'n mannier gekozen dat ,bij normale omstandigheden, alle turbines binnen ... en ... meter kunnen worden gefit, de DEL relatie met de Dwake loopt mim of meer lineair, vandaar kon een relatief grote stepsize worden gekozen.
+
+The yaw parameter is chosen at a stepsize of 10 degree, howerever extra data points were added at+-5 degree to improve the accuracy in the lower yaw regeones. the effect of this is shown in fig... 
+
+the y wake parameter however fluctuates over its range, and could not be accurately estimated using lineair interpolation over large stepsizes. as mentioned in... .A stepsize of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate. 
+
+ 
+ 
+
 %\noindent
 \textit{Optimization}: Game Theory
 \begin{figure}
