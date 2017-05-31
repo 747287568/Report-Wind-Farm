@@ -1,9 +1,5 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Method}{}% 2
-<<<<<<< HEAD
-\BOOKMARK [1][-]{section.3}{Results}{}% 3
-\BOOKMARK [1][-]{section.4}{Discussion}{}% 4
-=======
 \BOOKMARK [2][-]{subsection.2.1}{FLORIS}{section.2}% 3
 \BOOKMARK [3][-]{subsubsection.2.1.1}{Wake modelling}{subsection.2.1}% 4
 \BOOKMARK [2][-]{subsection.2.2}{FAST \046 MLife}{section.2}% 5
@@ -13,4 +9,3 @@
 \BOOKMARK [2][-]{subsection.2.6}{Optimization}{section.2}% 9
 \BOOKMARK [1][-]{section.3}{Results}{}% 10
 \BOOKMARK [1][-]{section.4}{Discussion}{}% 11
->>>>>>> 41c02d6d8c323d01d823c6e663f86d0f385a9453
