@@ -7,13 +7,8 @@
 \BOOKMARK [2][-]{subsection.2.4}{Wind shear}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.5}{LUT}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.6}{Optimization}{section.2}% 9
-<<<<<<< HEAD
 \BOOKMARK [3][-]{subsubsection.2.6.1}{Cost Function}{subsection.2.6}% 10
 \BOOKMARK [3][-]{subsubsection.2.6.2}{Game Theory}{subsection.2.6}% 11
 \BOOKMARK [1][-]{section.3}{Results}{}% 12
-\BOOKMARK [1][-]{section.4}{Discussion}{}% 13
-=======
-\BOOKMARK [1][-]{section.3}{Results}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Comparing}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{Discussion}{}% 12
->>>>>>> 2be9d50664f6e6083b7ca432cdf660485459e205
+\BOOKMARK [2][-]{subsection.3.1}{Comparing}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 14
