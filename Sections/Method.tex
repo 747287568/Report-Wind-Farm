@@ -137,18 +137,13 @@ These different conditions are described by the ranges of the parameters, which 
 	\item the yaw of the turbine, yaw  
 	\item the center to center distance between the turbine and the wake, y wake 
 \end{itemize}   
-To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
-\\
-Linear interpolation is used to estimate the DEL values between the data points of the LUT. It is assumed that the DELs as a result of the wind speed (U) could  be estimated accurately enough using only the 2 outer bounds. These bound were enough for the goal of this paper, though larger wind farms and different inflow wind velocities would require broadening these ranges. \newline 
-The DEL effect of the Dwake was also found to be accurate enough using fairly large step sizes. the range of this parameter was chosen so all downwind turbines within .. and .. meters could be accurately fitted. \newline
-The parameter yWake however, fluctuates over its range, and could not be accurately estimated using lineair interpolation over large step sizes. as mentioned in... .A step size of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate.\newline
-The yaw parameter is chosen at a step size of 10 degree, however extra data points were added at+-5 degree to improve the accuracy in the lower yaw regions. This effect is shown in Figure \ref{fig:filler} 
 
-	\begin{figure}
-		\includegraphics[width=\linewidth]{./Figures/pagefiller.jpg}
-		\caption{page filler, not the accurate figure.}
-		\label{fig:filler}
-	\end{figure} 
+ To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
+
+
+
+ This paper uses the wake diameter as a parameter to characterise the wakes. However, as stated before are the diameter of the wake, the downwind distance and the windspeed reduction behind the turbine(Udef) related by fitting equations. This means that the distance and the Udef could have been used as parameter just as well. The choice for the diameter comes since Floris searches for the best fit of the shape of a wake in the LUT data. And the diameter gives a more direct interpretation of the shape of the wake than the others do, subsequently meaning that the diameter comes more intuitively.
+
 
  
  

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.18)  1 JUN 2017 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.18)  1 JUN 2017 16:36
 entering extended mode
 **"./Wind Farm.tex"
 ("Wind Farm.tex"
@@ -711,14 +711,8 @@ LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textbullet' on input line 135.
 
-<./Figures/pagefiller.jpg, id=169, 702.625pt x 526.96875pt>
-File: ./Figures/pagefiller.jpg Graphic file (type jpg)
 
-<use ./Figures/pagefiller.jpg>
-Package pdftex.def Info: ./Figures/pagefiller.jpg used on input line 148.
-(pdftex.def)             Requested size: 205.0023pt x 153.74976pt.
-
-Underfull \hbox (badness 1107) in paragraph at lines 158--159
+Underfull \hbox (badness 1107) in paragraph at lines 153--154
 \T1/pplx/m/n/10 (+20) was used.[[]] The op-ti-miza-tion al-go-rithm
  []
 
@@ -727,8 +721,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>]
 )
-(Sections/Results.tex [6 <./Figures/pagefiller.jpg>]
-<./Figures/plotje.png, id=186, 641.39626pt x 312.41719pt>
+(Sections/Results.tex
+<./Figures/plotje.png, id=178, 641.39626pt x 312.41719pt>
 File: ./Figures/plotje.png Graphic file (type png)
 
 <use ./Figures/plotje.png>
@@ -744,7 +738,7 @@ File: ./Figures/plotje.png Graphic file (type png)
 Package pdftex.def Info: ./Figures/plotje.png used on input line 37.
 (pdftex.def)             Requested size: 205.0023pt x 99.8516pt.
 
-<./Figures/sumpowerexample.png, id=188, 612.03656pt x 329.73187pt>
+<./Figures/sumpowerexample.png, id=180, 612.03656pt x 329.73187pt>
 File: ./Figures/sumpowerexample.png Graphic file (type png)
 
 <use ./Figures/sumpowerexample.png>
@@ -759,8 +753,12 @@ File: ./Figures/sumpowerexample.png Graphic file (type png)
 <use ./Figures/sumpowerexample.png>
 Package pdftex.def Info: ./Figures/sumpowerexample.png used on input line 55.
 (pdftex.def)             Requested size: 205.0023pt x 110.44199pt.
-) (Sections/Discussion.tex [7 <./Figures/plotje.png> <./Figures/sumpowerexample
-.png>]) (Sections/Bibliography.tex
+
+Underfull \vbox (badness 3965) has occurred while \output is active []
+
+ [6 <./Figures/plotje.png>]) (Sections/Discussion.tex [7 <./Figures/sumpowerexa
+mple.png>])
+(Sections/Bibliography.tex
 Underfull \hbox (badness 1430) in paragraph at lines 22--26
 \T1/pplx/m/n/10 (+20) J-W. van Winger-den. ''A Tu-to-rial on
  []
@@ -782,7 +780,9 @@ Underfull \hbox (badness 7151) in paragraph at lines 56--57
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
- [9]
+ [9
+
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
  ("Wind Farm.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
@@ -799,10 +799,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
  ) 
 Here is how much of TeX's memory you used:
- 11061 strings out of 493328
- 168137 string characters out of 3139092
- 299661 words of memory out of 3000000
- 14045 multiletter control sequences out of 15000+200000
+ 11053 strings out of 493328
+ 167975 string characters out of 3139092
+ 299591 words of memory out of 3000000
+ 14040 multiletter control sequences out of 15000+200000
  74444 words of font info for 287 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,12n,43p,1163b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -814,9 +814,9 @@ ic/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/fpl/fplr
 c8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "Wind Farm.pdf" (9 pages, 606124 bytes).
+Output written on "Wind Farm.pdf" (9 pages, 552602 bytes).
 PDF statistics:
- 255 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 500000)
- 54441 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 54436 words of extra memory for PDF output out of 61914 (max. 10000000)
 
