@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.18)  1 JUN 2017 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.24)  1 JUN 2017 15:27
 entering extended mode
 **"./Wind Farm.tex"
 ("Wind Farm.tex"
@@ -642,7 +642,7 @@ Underfull \hbox (badness 1748) in paragraph at lines 9--13
 \T1/pplx/m/n/10 (+20) In the fol-low-ing sec-tions, dif-fer-ent mod-
  []
 
-[2] <./Figures/OptimizationProcess.png, id=113, 522.45187pt x 542.77782pt>
+[2] <./Figures/OptimizationProcess.png, id=105, 522.45187pt x 542.77782pt>
 File: ./Figures/OptimizationProcess.png Graphic file (type png)
 
 <use ./Figures/OptimizationProcess.png>
@@ -652,7 +652,7 @@ Package pdftex.def Info: ./Figures/OptimizationProcess.png used on input line 1
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 18.
 
-<./Figures/WakeFLORIS.png, id=119, 578.16pt x 365.11406pt>
+<./Figures/WakeFLORIS.png, id=111, 578.16pt x 365.11406pt>
 File: ./Figures/WakeFLORIS.png Graphic file (type png)
 
 <use ./Figures/WakeFLORIS.png>
@@ -662,14 +662,14 @@ Package pdftex.def Info: ./Figures/WakeFLORIS.png used on input line 34.
 Underfull \vbox (badness 3623) has occurred while \output is active []
 
  [3 <./Figures/OptimizationProcess.png> <./Figures/WakeFLORIS.png>]
-<./Figures/PlotGausDiscWakeDWake180U6yaw0.png, id=138, 421.575pt x 316.18124pt>
+<./Figures/PlotGausDiscWakeDWake180U6yaw0.png, id=130, 421.575pt x 316.18124pt>
 File: ./Figures/PlotGausDiscWakeDWake180U6yaw0.png Graphic file (type png)
 <use ./Figures/PlotGausDiscWakeDWake180U6yaw0.png>
 Package pdftex.def Info: ./Figures/PlotGausDiscWakeDWake180U6yaw0.png used on i
 nput line 63.
 (pdftex.def)             Requested size: 205.0023pt x 153.75298pt.
 
-<./Figures/PlotwithshearU6D220.png, id=150, 412.54124pt x 152.06813pt>
+<./Figures/PlotwithshearU6D220.png, id=142, 412.54124pt x 152.06813pt>
 File: ./Figures/PlotwithshearU6D220.png Graphic file (type png)
 
 <use ./Figures/PlotwithshearU6D220.png>
@@ -681,7 +681,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 93--98
  [][] 
  []
 
-<./Figures/PlotwithoutshearU6D220.png, id=151, 412.54124pt x 152.82094pt>
+<./Figures/PlotwithoutshearU6D220.png, id=143, 412.54124pt x 152.82094pt>
 File: ./Figures/PlotwithoutshearU6D220.png Graphic file (type png)
 
 <use ./Figures/PlotwithoutshearU6D220.png>
@@ -702,17 +702,17 @@ Overfull \hbox (5.4276pt too wide) in paragraph at lines 117--128
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4 <./Figures/PlotGausDiscWakeDWake180U6yaw0.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 135
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 134
 .
-LaTeX Font Info:    No file OMSpplx.fd. on input line 135.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 134.
 
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 135.
+(Font)              for symbol `textbullet' on input line 134.
 
 
-Underfull \hbox (badness 1107) in paragraph at lines 153--154
+Underfull \hbox (badness 1107) in paragraph at lines 150--151
 \T1/pplx/m/n/10 (+20) was used.[[]] The op-ti-miza-tion al-go-rithm
  []
 
@@ -722,7 +722,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [5 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>]
 )
 (Sections/Results.tex
-<./Figures/plotje.png, id=178, 641.39626pt x 312.41719pt>
+<./Figures/plotje.png, id=170, 641.39626pt x 312.41719pt>
 File: ./Figures/plotje.png Graphic file (type png)
 
 <use ./Figures/plotje.png>
@@ -738,7 +738,7 @@ File: ./Figures/plotje.png Graphic file (type png)
 Package pdftex.def Info: ./Figures/plotje.png used on input line 37.
 (pdftex.def)             Requested size: 205.0023pt x 99.8516pt.
 
-<./Figures/sumpowerexample.png, id=180, 612.03656pt x 329.73187pt>
+<./Figures/sumpowerexample.png, id=172, 612.03656pt x 329.73187pt>
 File: ./Figures/sumpowerexample.png Graphic file (type png)
 
 <use ./Figures/sumpowerexample.png>
@@ -754,11 +754,10 @@ File: ./Figures/sumpowerexample.png Graphic file (type png)
 Package pdftex.def Info: ./Figures/sumpowerexample.png used on input line 55.
 (pdftex.def)             Requested size: 205.0023pt x 110.44199pt.
 
-Underfull \vbox (badness 3965) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./Figures/plotje.png>]) (Sections/Discussion.tex [7 <./Figures/sumpowerexa
-mple.png>])
-(Sections/Bibliography.tex
+ [6 <./Figures/plotje.png>]) (Sections/Discussion.tex) (Sections/Bibliography.t
+ex
 Underfull \hbox (badness 1430) in paragraph at lines 22--26
 \T1/pplx/m/n/10 (+20) J-W. van Winger-den. ''A Tu-to-rial on
  []
@@ -773,22 +772,20 @@ Overfull \hbox (10.88373pt too wide) in paragraph at lines 22--26
 \T1/pplx/m/n/10 (-20) 2be9d50664f6e6083b7ca432cdf660485459e205 
  []
 
-[8]
+[7 <./Figures/sumpowerexample.png>]
 Underfull \hbox (badness 7151) in paragraph at lines 56--57
 []\T1/pplx/m/n/10 (+20) M. van Dijk. ''A Study on Yaw-
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
- [9
-
-]
+ [8]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
  ("Wind Farm.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 87.
 Package rerunfilecheck Info: File `"Wind Farm".out' has not changed.
-(rerunfilecheck)             Checksum: 0DFA0FADFD1B581003E79C94172FE92A;1001.
+(rerunfilecheck)             Checksum: 19CA0845EF8FAEF3051944CE9CE48D5A;831.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -799,11 +796,11 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
  ) 
 Here is how much of TeX's memory you used:
- 11053 strings out of 493328
- 167975 string characters out of 3139092
+ 11044 strings out of 493328
+ 167878 string characters out of 3139095
  299591 words of memory out of 3000000
- 14040 multiletter control sequences out of 15000+200000
- 74444 words of font info for 287 fonts, out of 3000000 for 9000
+ 14038 multiletter control sequences out of 15000+200000
+ 74221 words of font info for 284 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,12n,43p,1163b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
@@ -814,9 +811,9 @@ ic/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/fpl/fplr
 c8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "Wind Farm.pdf" (9 pages, 552602 bytes).
+Output written on "Wind Farm.pdf" (8 pages, 548554 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
- 54436 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
+ 54420 words of extra memory for PDF output out of 61914 (max. 10000000)
 
