@@ -1,78 +1,50 @@
 \section{Results}
 
-This chapter shall discribe, compare and evaluate the results of 3 optimalisation cases. 
-\begin{itemize}
-	\item Maximum power production
-	\item Power production at 80 \% 
-	\item Power production at 60 \% 
-\end{itemize}
-For all these cases was a 9 turbine windfarm used as shown in fig... And were simulated under constant 8 m/s windconditions.
+In this chapter different results are shown.
 
-  --
- 
- 
- \textit{Case 1: maximum power production: }
- This, first, case is used to determine the maximum power output that the 9 turbine farm can extract from the previousely described windconditions, this case neglects the loads.
- 
-
- \textit{Case 2 and 3: Power production at 80 and 60\%: }
- These cases are run at 80 and 60 percent of the maximum power output determinend in the first case. The goal of these cases is to find the optimal running procidure given a required constant poweroutput. the required power output chosen for this paper is linkt to the maximum posible, since ...why? 
- 
-
-
+\subsection{Look-up-table}
+As an example of the DEL values stored in the LUT a visualization of a slice with a $D_{wake}$ of 230m and a $U_{fs}$ of 8m/s is shown in figure \ref{fig:LUTslice}. Slices for different $D_{wake}$ and $U_{fs}$ look similarly.
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{./Figures/plotje.png}
-	\caption{page filler, not the accurate figure.}
-	\label{fig:case1turbs}
+	\includegraphics[width=\linewidth]{./Figures/LUTslice_Dw230_Ufs8.jpg}
+	\caption{Slice of the LUT with a $D_{wake}$ of 230m and a $U_{fs}$ of 8m/s }
+	\label{fig:LUTslice}
 \end{figure}
 
-	\begin{figure}
-	\includegraphics[width=\linewidth]{./Figures/plotje.png}
-	\caption{page filler, not the accurate figure.}
-	\label{fig:case2turbs}
-\end{figure}
+\subsection{Optimization}
+The optimization script is run on a set of nine wind turbines which are place in a 3-by-3 grid. As a reference 'greedy control' is used. To determine the maximum power the nine wind turbines can deliver an optimization is executed taking only power into account. See table \ref{tab:reference} for the power and DEL values for both these situations. \newline
+To show the optimization script in action five cases are evaluated. Each case has its reference power $P_{ref}$ set as a percentage of the maximum power. In figure \ref{fig:optimization90pct} power and DEL values during optimization with a reference power of 90\% are shown. Figure \ref{fig:config90pct} shows the final turbine configuration for this optimization run. \newline
+Figure \ref{fig:optimizationTrends} shows the DEL values for different reference powers.
 
- \begin{figure}
- 	\includegraphics[width=\linewidth]{./Figures/plotje.png}
- 	\caption{page filler, not the accurate figure.}
- 	\label{fig:case3turbs}
- \end{figure}
+
+\begin{table}[h]
+	\caption{Power and DEL values for greedy control and power-only optimization}
+	\centering
+	\label{tab:reference}
+	\begin{tabular}{lccc}
+		\hline
+		& Greedy control & Power-only \\ 
+		\hline
+		Power [MW] & 12.42 & 13.22 \\
+		DEL value [-] & 5.94E7 & - \\
+	\end{tabular}
+\end{table}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{./Figures/sumpowerexample.png}
-	\caption{page filler, not the accurate figure.}
-	\label{fig:case1power}
+	\includegraphics[width=\linewidth]{./Figures/{Configuration_Pref11.9}.jpg}
+	\caption{Turbine configuration after optimization with $P_{ref}$ at 90\% }
+	\label{fig:config90pct}
 \end{figure}
 
 \begin{figure}
- \includegraphics[width=\linewidth]{./Figures/sumpowerexample.png}
- \caption{page filler, not the accurate figure.}
- \label{fig:case2power}
+	\includegraphics[width=\linewidth]{./Figures/{Optimization_Pref11.9}.jpg}
+	\caption{Loads and power during optimization with $P_{ref}$ at 90\% }
+	\label{fig:optimization90pct}
 \end{figure}
 
- \begin{figure}
- 	\includegraphics[width=\linewidth]{./Figures/sumpowerexample.png}
- 	\caption{page filler, not the accurate figure.}
- 	\label{fig:case3power}
- \end{figure}
- 
---------------------------------------------------
-\subsection{Comparing}
-
-
-\textit{Power converges}
-	reading out the maximum power, stating that power production does indeed aproach the ref power
-	
-	
-\textit{DELs decrese}
-	comparing loads, also among eachoter, wat is the effect of lower ref power on the loads/
-	
-	
-\textit{More?}   
- ....
-
-  	
- 
-----------------------------------------------------   
+\begin{figure}
+	\includegraphics[width=\linewidth]{./Figures/trendPlot.jpg}
+	\caption{DEL values for different $P_{ref}$}
+	\label{fig:optimizationTrends}
+\end{figure}
          
