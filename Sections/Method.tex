@@ -66,12 +66,12 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 \end{figure}
 
 %\noindent
-\subsection{Inflow files, Flow field} FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations ((\ref{eq:Dw} to \ref{eq:Uw})). The wake is divided into three zones as described in paragraph \ref{wakemodel}. A real wake will not have discrete zones, but a more fluent transition between the wake zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred \cite{Bastankhah2016}.The difference of wake shape between a Gaussian and discrete shape can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as followed, 
+\subsection{Inflow files, Flow field} FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with Equations ((\ref{eq:Dw} to \ref{eq:Uw})). The wake is divided into three zones as described in paragraph \ref{wakemodel}. A real wake will not have discrete zones, but a more fluent transition between the wake zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is preferred \cite{Bastankhah2016}.The difference of wake shape between a Gaussian and discrete shape can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as followed, 
 \begin{equation}
 \label{eq:gaus}
 G(y, z) = A [e^{-(\frac{y^2}{2\sigma_y} + \frac{z^2}{2\sigma_z})}]
 \end{equation}
-where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone, $U_{w,1}$, which is calculated with equation \ref{eq:Uw}. $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. The standard deviations are related to the outer wake zone $D_{w,i,q=3}$ which is given in \ref{eq:sigm},
+where the amplitude of the Gaussian, A, is equal to the velocity loss of the inner wake zone, $U_{w,1}$, which is calculated in Equation \ref{eq:Uw}. $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. The standard deviations are related to the outer wake zone $D_{w,i,q=3}$ which is given in \ref{eq:sigm},
 \begin{equation}
 \label{eq:sigm}
 \sigma_y,\sigma_z = D_{w,i,q=3}/n 
@@ -129,23 +129,20 @@ $^*$Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
 
 %\noindent
 \subsection{LUT}
- To reduce computational time during optimization a look-up table (LUT) is created. The LUT is created using FAST and MLife, and it contains a a large number of DEL values for a wide variety of wind field conditions on a wind turbine.
-These different conditions are described by the ranges of the parameters, which can be seen in Table \ref{tab:pars}. The parameters are wake characteristics which can be extracted from FLORIS. The parameters chosen for the LUT are:\begin{itemize}
+ To reduce computational time during optimization a look-up table (LUT) is created. The LUT is with the use of the porgrams FAST and MLife, and contains a large number of DEL values for a wide variety of wind field conditions on a wind turbine.
+These different conditions are described by the ranges of the parameters, which can be seen in Table \ref{tab:pars}. The parameters are wake characteristics which can be extracted from FLORIS. The parameters chosen for the LUT are:
+\begin{itemize}
 	\item the free stream wind speed, U
 	\item the outer diameter of the wake, Dwake
 	\item the yaw of the turbine, yaw  
 	\item the center to center distance between the turbine and the wake, y wake 
 \end{itemize}   
- To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
-
-
-Lineair interpolation is used to estimate the DEL values between the data points of the LUT. It is assumed that the DELs as a result of the windspeed(U) could  be estimated accurately enough using only the 2 outer bounds. These bound were enough for the goal of this paper, though larger windfarms and different inflow wind velocities would require broadening these ranges. 
- 
-The DEL effect of the Dwake was also found to be accurate enough using fairly large stepsizes. the range of this parameter was chosen so all downwind turbines within .. and .. meters could be accurately fitted. 
-
-The y wake parameter however fluctuates over its range, and could not be accurately estimated using lineair interpolation over large stepsizes. as mentioned in... .A stepsize of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate.
-
-The yaw parameter is chosen at a stepsize of 10 degree, howerever extra data points were added at+-5 degree to improve the accuracy in the lower yaw regeones. This effect is shown in figure \ref{fig:filler} 
+To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
+\\
+Linear interpolation is used to estimate the DEL values between the data points of the LUT. It is assumed that the DELs as a result of the wind speed (U) could  be estimated accurately enough using only the 2 outer bounds. These bound were enough for the goal of this paper, though larger wind farms and different inflow wind velocities would require broadening these ranges. \newline 
+The DEL effect of the Dwake was also found to be accurate enough using fairly large step sizes. the range of this parameter was chosen so all downwind turbines within .. and .. meters could be accurately fitted. \newline
+The parameter yWake however, fluctuates over its range, and could not be accurately estimated using lineair interpolation over large step sizes. as mentioned in... .A step size of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate.\newline
+The yaw parameter is chosen at a step size of 10 degree, however extra data points were added at+-5 degree to improve the accuracy in the lower yaw regions. This effect is shown in Figure \ref{fig:filler} 
 
 	\begin{figure}
 		\includegraphics[width=\linewidth]{./Figures/pagefiller.jpg}
@@ -158,7 +155,7 @@ The yaw parameter is chosen at a stepsize of 10 degree, howerever extra data poi
 
 %\noindent
 \subsection{Optimization}
-To optimize for power reference tracking and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These can influence the power and loads significantly, so both are combined in a cost function. \cite{Marden2013}\cite{Dijk2016} 
+To optimize for power reference tracking and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These settings can influence the power and loads significantly, so both are combined in a cost function. \cite{Marden2013}\cite{Dijk2016} 
 
 \subsubsection{Cost Function}
 The cost function depends on two variables: a normalized power and a normalized load variable. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
@@ -166,13 +163,13 @@ The cost function depends on two variables: a normalized power and a normalized 
 \begin{equation}
 \begin{aligned}
 J(P,DEL) = c*((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
-(1-c)*DEL(a_i,\gamma_i)/DEL_{base}
+(1-c)*DEL(a_i,\gamma_i)/DEL_{mean}
 \end{aligned}
  \label{eq:costf}
 \end{equation}
-Where $c$ is the tuning parameter for the optimization between power and loads and $P_{ref}$ is the desired power output of the wind farm. $P_{bw}$ and $DEL_{base}$ are the power and loads baselines respectively, to create normalized variables.
+Where $c$ is the tuning parameter for the optimization between power and loads and $P_{ref}$ is the desired power output of the wind farm. $P_{bw}$ is the bandwidth of the power in which the power values are acceptable around the reference power.  $DEL_{mean}$ is the mean DEL value of the complete LUT. 
 \newline
-To execute the optimization, the cost function has to be minimized. To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result values much larger than the reference are heavily penalized, whereas the power crosses $P_{bw}$ the emphasis shifts to the loads.
+To execute the optimization, the cost function has to be minimized. To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result values much larger or smaller than the reference are heavily penalized, whereas when the power is within the bandwidth the emphasis shifts to the loads.
 
 \subsubsection{Game Theory}
 The game-theoretic approach uses random perturbations for the yaw angles and the axial induction to optimize the cost function. When new values for yaw and axial induction settings give an improvement regarding the cost function, the settings are saved and the process will be repeated with the new settings. Because of the fact it uses random perturbations, the game theoretic approach is an adequate optimizer to find the global minimum of the cost function.\cite{Dijk2016}
