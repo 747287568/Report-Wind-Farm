@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.18)  30 MAY 2017 17:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.18)  1 JUN 2017 12:04
 entering extended mode
 **"./Wind Farm.tex"
 ("Wind Farm.tex"
@@ -387,29 +387,85 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip64
 )
-("Wind Farm.aux")
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip65
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen161
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen162
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count134
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count135
+\leftroot@=\count136
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count137
+\DOTSCASE@=\count138
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box30
+\strutbox@=\box31
+\big@size=\dimen163
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count139
+\c@MaxMatrixCols=\count140
+\dotsspace@=\muskip11
+\c@parentequation=\count141
+\dspbrk@lvl=\count142
+\tag@help=\toks20
+\row@=\count143
+\column@=\count144
+\maxfields@=\count145
+\andhelp@=\toks21
+\eqnshift@=\dimen164
+\alignsep@=\dimen165
+\tagshift@=\dimen166
+\tagwidth@=\dimen167
+\totwidth@=\dimen168
+\lineht@=\dimen169
+\@envbody=\toks22
+\multlinegap=\skip66
+\multlinetaggap=\skip67
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+) ("Wind Farm.aux")
 \openout1 = `"Wind Farm.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Try loading font information for T1+pplx on input line 73.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pplx.fd"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 75.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pplx.fd"
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
-\big@size=\dimen161
-LaTeX Info: Redefining \microtypecontext on input line 73.
+LaTeX Info: Redefining \microtypecontext on input line 75.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -463,17 +519,17 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count134
-\scratchdimen=\dimen162
-\scratchbox=\box30
-\nofMPsegments=\count135
-\nofMParguments=\count136
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count137
-\MPscratchDim=\dimen163
-\MPnumerator=\count138
-\makeMPintoPDFobject=\count139
-\everyMPtoPDFconversion=\toks20
+\scratchcounter=\count146
+\scratchdimen=\dimen170
+\scratchbox=\box32
+\nofMPsegments=\count147
+\nofMParguments=\count148
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count149
+\MPscratchDim=\dimen171
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
+\everyMPtoPDFconversion=\toks25
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -487,8 +543,8 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 73.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring OFF on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -496,43 +552,45 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count140
+\c@section@level=\count152
 )
-LaTeX Info: Redefining \ref on input line 73.
-LaTeX Info: Redefining \pageref on input line 73.
-LaTeX Info: Redefining \nameref on input line 73.
+LaTeX Info: Redefining \ref on input line 75.
+LaTeX Info: Redefining \pageref on input line 75.
+LaTeX Info: Redefining \nameref on input line 75.
 
 ("Wind Farm.out") ("Wind Farm.out")
 \@outlinefile=\write3
 \openout3 = `"Wind Farm.out"'.
 
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 76.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 76.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 78.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 78.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 78.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pplx.fd"
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 76.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 78.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlzplm.fd"
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 76.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 78.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omszplm.fd"
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 76.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 78.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omxzplm.fd"
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 76.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 78.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1zplm.fd"
@@ -554,6 +612,9 @@ Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplx/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
+Underfull \vbox (badness 4036) has occurred while \output is active []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
@@ -574,7 +635,7 @@ Underfull \hbox (badness 1748) in paragraph at lines 8--12
 \T1/pplx/m/n/10 (+20) In the fol-low-ing sec-tions, dif-fer-ent mod-
  []
 
-<./Figures/OptimizationProcess.png, id=71, 522.45187pt x 542.77782pt>
+<./Figures/OptimizationProcess.png, id=79, 522.45187pt x 542.77782pt>
 File: ./Figures/OptimizationProcess.png Graphic file (type png)
 
 <use ./Figures/OptimizationProcess.png>
@@ -583,44 +644,46 @@ Package pdftex.def Info: ./Figures/OptimizationProcess.png used on input line 1
 (pdftex.def)             Requested size: 205.0023pt x 212.98279pt.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 17.
-
-<./Figures/WakeFLORIS.png, id=77, 578.16pt x 365.11406pt>
+ [2 <./Figures/OptimizationProcess.png>] <./Figures/WakeFLORIS.png, id=92, 578.
+16pt x 365.11406pt>
 File: ./Figures/WakeFLORIS.png Graphic file (type png)
 
 <use ./Figures/WakeFLORIS.png>
-Package pdftex.def Info: ./Figures/WakeFLORIS.png used on input line 34.
+Package pdftex.def Info: ./Figures/WakeFLORIS.png used on input line 33.
 (pdftex.def)             Requested size: 205.0023pt x 129.45761pt.
- [2 <./Figures/OptimizationProcess.png>]
-<./Figures/PlotGausDiscWakeDWake180U6yaw0.png, id=93, 421.575pt x 316.18124pt>
-File: ./Figures/PlotGausDiscWakeDWake180U6yaw0.png Graphic file (type png)
 
+<./Figures/PlotGausDiscWakeDWake180U6yaw0.png, id=100, 421.575pt x 316.18124pt>
+File: ./Figures/PlotGausDiscWakeDWake180U6yaw0.png Graphic file (type png)
 <use ./Figures/PlotGausDiscWakeDWake180U6yaw0.png>
 Package pdftex.def Info: ./Figures/PlotGausDiscWakeDWake180U6yaw0.png used on i
-nput line 63.
+nput line 62.
 (pdftex.def)             Requested size: 205.0023pt x 153.75298pt.
+
+Underfull \vbox (badness 1655) has occurred while \output is active []
+
  [3 <./Figures/WakeFLORIS.png> <./Figures/PlotGausDiscWakeDWake180U6yaw0.png (P
 NG copy)>]
-<./Figures/PlotwithshearU6D220.png, id=115, 412.54124pt x 178.41656pt>
+<./Figures/PlotwithshearU6D220.png, id=126, 412.54124pt x 152.06813pt>
 File: ./Figures/PlotwithshearU6D220.png Graphic file (type png)
 
 <use ./Figures/PlotwithshearU6D220.png>
-Package pdftex.def Info: ./Figures/PlotwithshearU6D220.png used on input line 8
-4.
-(pdftex.def)             Requested size: 215.0023pt x 92.98404pt.
+Package pdftex.def Info: ./Figures/PlotwithshearU6D220.png used on input line 9
+3.
+(pdftex.def)             Requested size: 215.0023pt x 79.25221pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 83--88
+Overfull \hbox (10.0pt too wide) in paragraph at lines 92--97
  [][] 
  []
 
-<./Figures/PlotwithoutshearU6D220.png, id=117, 412.54124pt x 176.91093pt>
+<./Figures/PlotwithoutshearU6D220.png, id=127, 412.54124pt x 152.82094pt>
 File: ./Figures/PlotwithoutshearU6D220.png Graphic file (type png)
 
 <use ./Figures/PlotwithoutshearU6D220.png>
 Package pdftex.def Info: ./Figures/PlotwithoutshearU6D220.png used on input lin
-e 90.
-(pdftex.def)             Requested size: 215.0023pt x 92.19936pt.
+e 99.
+(pdftex.def)             Requested size: 215.0023pt x 79.64455pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 89--94
+Overfull \hbox (10.0pt too wide) in paragraph at lines 98--103
  [][] 
  []
 
@@ -629,44 +692,45 @@ Overfull \hbox (5.4276pt too wide) in paragraph at lines 116--127
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+[4 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>]
 LaTeX Font Info:    Try loading font information for OMS+pplx on input line 133
 .
 LaTeX Font Info:    No file OMSpplx.fd. on input line 133.
+
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textbullet' on input line 133.
 
-[4 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>])
-(Sections/Results.tex) (Sections/Discussion.tex) (Sections/Bibliography.tex
-[5])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
- [6
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
+Underfull \hbox (badness 1107) in paragraph at lines 142--143
+\T1/pplx/m/n/10 (+20) was used.[[]] The op-ti-miza-tion al-go-rithm
+ []
+
+) (Sections/Results.tex [5]) (Sections/Discussion.tex)
+(Sections/Bibliography.tex)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
  ("Wind Farm.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `"Wind Farm".out' has not changed.
-(rerunfilecheck)             Checksum: 446A75A31B9D0572446248E4F8EE9D58;625.
+(rerunfilecheck)             Checksum: C0C1AD9FFC3C6B3871B9083D0010B5EB;771.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 10341 strings out of 493328
- 159461 string characters out of 3139092
- 287293 words of memory out of 3000000
- 13406 multiletter control sequences out of 15000+200000
- 71559 words of font info for 261 fonts, out of 3000000 for 9000
+ 10951 strings out of 493328
+ 166421 string characters out of 3139092
+ 296191 words of memory out of 3000000
+ 13982 multiletter control sequences out of 15000+200000
+ 74512 words of font info for 273 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,43p,1479b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,43p,1479b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
@@ -675,9 +739,9 @@ ic/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/fpl/fplr
 c8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "Wind Farm.pdf" (6 pages, 459762 bytes).
+Output written on "Wind Farm.pdf" (6 pages, 311808 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
- 48242 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 194 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 48770 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -1,9 +1,9 @@
 \section{Method}
 \label{sec:method}
 	
-	To realize active power control and minimizing loads by yaw control and axial induction, it is necessary to know the effect of different flow conditions on the total power of the wind farm and the effect of different flow conditions on the loads for each of the turbine. Moreover there need to be an optimizer which executes the optimization to obtain a set value for the power and to minimize the loads.\newline
-	The total power of the wind farm is calculated in the FLORIS-model. Besides, FLORIS is able to adjust the turbine configurations, the axial induction and yaw position.  
-	The effect of loads on a turbine are given by the programs FAST and MLife. The output of these programs are Damage Equivalent Load values(DELs), which is a measure of equivalent load damage to the turbine concerning the material properties.\cite{Chougule2016} These DELs are calculated for a different set of wind and turbine conditions and are stored in a look-up table.(LUT)
+	To realize active power control and minimizing loads by yaw control and axial induction, it is necessary to know the effect of different flow conditions on the total power of the wind farm and the effect of different flow conditions on the loads for each of the turbine. Moreover, there need to be an optimizer which executes the optimization to approach a set value for the power and to minimize the loads.\newline
+	The total power of the wind farm is calculated with the FLORIS-model. Besides, FLORIS is able to adjust the turbine configurations, the axial induction and yaw position.  
+	The effect of the wind flow on a turbine, regarding the loads, are given by the programs FAST and MLife. The output of these programs are Damage Equivalent Load values (DELs), which are a measure of equivalent load damage to the turbine concerning the material properties.\cite{Chougule2016} These DELs are calculated for a different set of wind and turbine conditions and are stored in a look-up table(LUT).
 	
 	The optimizer takes the desired power production of the wind farm as an input and uses the configurations of the turbines from FLORIS to find in the look-up table the DEL values coupled to this configurations. If the configurations of the turbines are an improvement compared to the previous one, i.e. a improved power control or a reduce in the loads, FLORIS will save the changes in turbine configurations. An overview of the optimization procedure is shown in Figure \ref{fig:optim}. 
 	\\
@@ -24,12 +24,11 @@
 
 %\noindent
 \subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model calculates the power of the wind farm as a function of the yaw misalignment and the axial induction. \cite{Gebraad2016}
-The advantage of FLORIS is that it is a relative accurate\cite{Dijk2016} and a low computation model, due to the fact that it uses high-fidelity data from a computational fluid dynamics simulation. 
+FLORIS is a relative accurate\cite{Dijk2016} and a low computation model, due to the fact that it uses high-fidelity data from a computational fluid dynamics simulation. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
-As can be seen in Figure \ref{fig:wake}, FLORIS  contains a wake model which divides the wake in different zones: the near wake, the far wake, and  the mixing zone, $q = 1$, $q = 2$, and $q = 3$ respectively. Also  wake properties as location of the centerline, the diameter of the wake zones and the wind speed in each zone are calculated by FLORIS.
-(\ref{eq:Dw} to \ref{eq:Uw}). 
+As can be seen in Figure \ref{fig:wake}, FLORIS  contains a wake model which divides the wake in different zones: the near wake, the far wake, and  the mixing zone, $q = 1$, $q = 2$, and $q = 3$ respectively. Each zone has its own diameter and wind speed, which are calculated by FLORIS.(\ref{eq:Dw} to \ref{eq:Uw}). 
 \begin{figure}
   	\includegraphics[width=\linewidth]{./Figures/WakeFLORIS.png}
   	\caption{Simplified top view representation of a wake of a turbine by FLORIS.\cite{Gebraad2016}   }
@@ -41,7 +40,7 @@ Let $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-Also the velocity depends on the downwind distance $(x)$, which is an argument of the wake decay coefficient $c(x,y)$.\ref{eq:Uw}. This wake decay coefficient is multiplied by the axial induction factor and substracted from the free stream velocity $U_i$. The axial induction factor is a value for the decrease in wind velocity behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}   
+Also the velocity depends on the downwind distance $(x)$, which is an argument of the wake decay coefficient $c(x,y)$.\ref{eq:Uw}. This wake decay coefficient is multiplied by the axial induction factor and subtracted from the free stream velocity $U_i$. The axial induction factor is a value for the decrease in wind velocity behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}   
 
 \begin{equation}
 \label{eq:Uw}
@@ -57,7 +56,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 
 %\noindent
-\subsection{FAST \& MLife} FAST is a programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) \cite{Jonkman2005}. It uses wind turbine specifications as well as wind flow situations. By evaluating a flow field, FAST computes the bending moment of a blade. Since the bending moment of a blade do not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). 
+\subsection{FAST \& MLife} FAST is a programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) \cite{Jonkman2005}. It uses wind turbine specifications as well as wind flow situations. By evaluating a flow field, FAST computes the bending moment of a blade. Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). 
 
 \begin{figure}
   \includegraphics[width=\linewidth]{./Figures/PlotGausDiscWakeDWake180U6yaw0.png} %Plot with Gauss vs Discr flow, Dwake = 180, u_mean = 6, yaw = 0
@@ -77,7 +76,17 @@ where the amplitude of the Gaussian, A, is equal to the velocity loss of the inn
 \sigma_y,\sigma_z = D_{w,i,q=3}/n 
 \end{equation}
 \\
-Where $n$ can be modified to change the width of the Gaussian. Consequently, it possible to fit the Gaussian to the wake zones of Gebraad. (Figure \ref{fig:disgaus})
+Where $n$ can be modified to change the width of the Gaussian. Consequently, it is possible to fit the Gaussian to the wake zones of Gebraad. (Figure \ref{fig:disgaus})
+
+
+\subsection{Wind shear}
+Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point \cite{Firtin2011}.  The velocity distribution is calculated with, 
+\begin{equation}
+\label{eq:shear}
+v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
+\end{equation}
+where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground \cite{Firtin2011}. The wind shear is implemented in the flow field. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
+
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.50\textwidth}
@@ -95,15 +104,6 @@ Where $n$ can be modified to change the width of the Gaussian. Consequently, it 
 	\caption[Two Gaussian flow fields]{Gaussian wind fields with a free stream velocity of 6 $m/s$ at a height of 90 $m$. The outer diameter of de wake is 220 $m$ and the diameter of the rotor blades is 126.4 $m$.}
 	\label{fig:windshear}
 \end{figure}
-
-\subsection{Wind shear}
-Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point \cite{Firtin2011}.  The velocity distribution is calculated with, 
-\begin{equation}
-\label{eq:shear}
-v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
-\end{equation}
-where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground \cite{Firtin2011}. The wind shear is implemented in the flow field. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
-
 
 
 
@@ -129,16 +129,35 @@ Note: Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
 %\noindent
 \subsection{LUT}
  To reduce computational time during optimization a look-up table (LUT) is created. The LUT is created using FAST and MLife, and it contains a a large number of DEL values for a wide variety of wind field conditions on a wind turbine.
-These different conditions are described by the ranges of the parameters (see Table \ref{tab:pars}). The parameters are wake characteristics and can be extracted from FLORIS. The parameters chosen for the LUT are:\begin{itemize}
+These different conditions are described by the ranges of the parameters, which can be seen in Table \ref{tab:pars}. The parameters are wake characteristics which can be extracted from FLORIS. The parameters chosen for the LUT are:\begin{itemize}
 	\item the free stream wind speed, U
 	\item the outer diameter of the wake, Dwake
 	\item the yaw of the turbine, yaw  
 	\item the center to center distance between the turbine and the wake, y wake 
 \end{itemize}   
- The LUT generation is time consuming, as such, it cannot account for all integer values of the parameters. The step-size of these parameters is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table (see Table \ref{tab:pars}). With the use of the pre-calculated LUT, online optimization can be realized.
+ To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
 
 %\noindent
 \subsection{Optimization}
-Game Theory
+To optimize for power reference tracking and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These can influence the power and loads significantly, so both are combined in a cost function. \cite{Marden2013}\cite{Dijk2016} 
+
+\subsubsection{Cost Function}
+The cost function depends on two variables: a normalized power and a normalized load variable. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
+
+\begin{equation}
+\begin{aligned}
+J(P,DEL) = c*((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
+(1-c)*DEL(a_i,\gamma_i)/DEL_{base}
+\end{aligned}
+ \label{eq:costf}
+\end{equation}
+Where $c$ is the tuning parameter for the optimization between power and loads and $P_{ref}$ is the desired power output of the wind farm. $P_{bw}$ and $DEL_{base}$ are the power and loads baselines respectively, to create normalized variables.
+\newline
+To execute the optimization, the cost function has to be minimized. To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result values much larger than the reference are heavily penalized, whereas the power crosses $P_{bw}$ the emphasis shifts to the loads.
+
+\subsubsection{Game Theory}
+The game-theoretic approach uses random perturbations for the yaw angles and the axial induction to optimize the cost function. When new values for yaw and axial induction settings give an improvement regarding the cost function, the settings are saved and the process will be repeated with this new settings. Because of the fact it uses random perturbations, the game theoretic approach is an adequate optimizer to find the global minimum of the settings.\cite{Dijk2016}
+
+
 
 
