@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.24)  1 JUN 2017 15:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.24)  1 JUN 2017 15:27
 entering extended mode
 **"./Wind Farm.tex"
 ("Wind Farm.tex"
@@ -716,7 +716,11 @@ Underfull \hbox (badness 1107) in paragraph at lines 150--151
 \T1/pplx/m/n/10 (+20) was used.[[]] The op-ti-miza-tion al-go-rithm
  []
 
-[5 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>])
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./Figures/PlotwithshearU6D220.png> <./Figures/PlotwithoutshearU6D220.png>]
+)
 (Sections/Results.tex
 <./Figures/plotje.png, id=170, 641.39626pt x 312.41719pt>
 File: ./Figures/plotje.png Graphic file (type png)
@@ -749,8 +753,11 @@ File: ./Figures/sumpowerexample.png Graphic file (type png)
 <use ./Figures/sumpowerexample.png>
 Package pdftex.def Info: ./Figures/sumpowerexample.png used on input line 55.
 (pdftex.def)             Requested size: 205.0023pt x 110.44199pt.
- [6 <./Figures/plotje.png>])
-(Sections/Discussion.tex) (Sections/Bibliography.tex
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./Figures/plotje.png>]) (Sections/Discussion.tex) (Sections/Bibliography.t
+ex
 Underfull \hbox (badness 1430) in paragraph at lines 22--26
 \T1/pplx/m/n/10 (+20) J-W. van Winger-den. ''A Tu-to-rial on
  []
@@ -804,7 +811,7 @@ ic/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/fpl/fplr
 c8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "Wind Farm.pdf" (8 pages, 548421 bytes).
+Output written on "Wind Farm.pdf" (8 pages, 548554 bytes).
 PDF statistics:
  238 PDF objects out of 1000 (max. 8388607)
  57 named destinations out of 1000 (max. 500000)
