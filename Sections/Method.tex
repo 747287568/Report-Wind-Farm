@@ -1,11 +1,17 @@
 \section{Method}
 \label{sec:method}
 	
+<<<<<<< HEAD
 	To realize active power control and minimizing loads by yaw control and axial induction, it is necessary to know the effect of different flow conditions on the total power of the wind farm and the effect of different flow conditions on the loads for each of the turbine. Moreover, there need to be an optimizer which executes the optimization to approach a set value for the power and to minimize the loads.\newline
 	The total power of the wind farm is calculated with the FLORIS-model. Besides, FLORIS is able to adjust the turbine configurations, the axial induction and yaw position.  
 	The effect of the wind flow on a turbine, regarding the loads, are given by the programs FAST and MLife. The output of these programs are Damage Equivalent Load values (DELs), which are a measure of equivalent load damage to the turbine concerning the material properties.\cite{Chougule2016} These DELs are calculated for a different set of wind and turbine conditions and are stored in a look-up table(LUT).
+=======
+	To realize power regulation and minimizing loads by yaw control and axial induction control, it is necessary to know the effect of different flow conditions on the total power of the wind farm and the effect of different flow conditions on the loads for each of the turbine. Moreover there need to be an optimizer which executes the optimization to obtain a set value for the power and to minimize the loads.\newline
+	The total power of the wind farm is calculated in the FLORIS-model. Furthermore, FLORIS is able to adjust the turbine configurations, the axial induction and yaw position.  
+	The effect of loads on a turbine are given by the programs FAST and MLife. The output of these programs are Damage Equivalent Load values(DELs), which is a measure of equivalent load damage to the turbine concerning the material properties.\cite{Chougule2016} These DELs are calculated for a different set of wind and turbine conditions and are stored in a look-up table(LUT).
+>>>>>>> 2be9d50664f6e6083b7ca432cdf660485459e205
 	
-	The optimizer takes the desired power production of the wind farm as an input and uses the configurations of the turbines from FLORIS to find in the look-up table the DEL values coupled to this configurations. If the configurations of the turbines are an improvement compared to the previous one, i.e. a improved power control or a reduce in the loads, FLORIS will save the changes in turbine configurations. An overview of the optimization procedure is shown in Figure \ref{fig:optim}. 
+	The optimizer takes the desired power production of the wind farm as an input. It then uses the configurations of the turbines from FLORIS to find the corresponding DEL values in the look-up table. If the configurations of the turbines are an improvement compared to the previous one, i.e. a improved power control or a reduce in the loads, FLORIS will save this turbine configurations. An overview of the optimization procedure is shown in Figure \ref{fig:optim}. 
 	\\
 	\\
 	In the following sections, different models and model steps, used to perform the optimization, are explained:
@@ -119,11 +125,11 @@ where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respecti
 		\hline
 		Dwake & 180 & 330 & 25 \\
 		U & 6 & 8 & 2 \\
-		yaw & -30 & 30 & 20, 10, 5 \\
+		yaw & -30 & 30 & $^*$ \\
 		y wake & -250 & 250 & 10 \\
 		\hline
 	\end{tabular}
-Note: Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
+$^*$Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
 \end{table}
 
 %\noindent
@@ -136,6 +142,24 @@ These different conditions are described by the ranges of the parameters, which 
 	\item the center to center distance between the turbine and the wake, y wake 
 \end{itemize}   
  To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
+
+
+Lineair interpolation is used to estimate the DEL values between the data points of the LUT. It is assumed that the DELs as a result of the windspeed(U) could  be estimated accurately enough using only the 2 outer bounds. These bound were enough for the goal of this paper, though larger windfarms and different inflow wind velocities would require broadening these ranges. 
+ 
+The DEL effect of the Dwake was also found to be accurate enough using fairly large stepsizes. the range of this parameter was chosen so all downwind turbines within .. and .. meters could be accurately fitted. 
+
+The y wake parameter however fluctuates over its range, and could not be accurately estimated using lineair interpolation over large stepsizes. as mentioned in... .A stepsize of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate.
+
+The yaw parameter is chosen at a stepsize of 10 degree, howerever extra data points were added at+-5 degree to improve the accuracy in the lower yaw regeones. This effect is shown in figure \ref{fig:filler} 
+
+	\begin{figure}
+		\includegraphics[width=\linewidth]{./Figures/pagefiller.jpg}
+		\caption{page filler, not the accurate figure.}
+		\label{fig:filler}
+	\end{figure} 
+
+ 
+ 
 
 %\noindent
 \subsection{Optimization}
