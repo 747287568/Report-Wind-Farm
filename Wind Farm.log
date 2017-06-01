@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.25)  1 JUN 2017 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.25)  1 JUN 2017 18:34
 entering extended mode
 **"./Wind Farm.tex"
 ("Wind Farm.tex"
@@ -728,7 +728,7 @@ Package pdftex.def Info: ./Figures/LUTslice_Dw230_Ufs8.jpg used on input line 9
 .
 (pdftex.def)             Requested size: 205.0023pt x 153.74976pt.
 
-Overfull \hbox (8.51756pt too wide) in paragraph at lines 24--31
+Overfull \hbox (8.51756pt too wide) in paragraph at lines 24--32
  [][] 
  []
 
@@ -740,7 +740,7 @@ File: ./Figures/Configuration_Pref11.9.jpg Graphic file (type jpg)
 
 <use ./Figures/Configuration_Pref11.9.jpg>
 Package pdftex.def Info: ./Figures/Configuration_Pref11.9.jpg used on input lin
-e 34.
+e 35.
 (pdftex.def)             Requested size: 205.0023pt x 153.74539pt.
 
 <./Figures/Optimization_Pref11.9.jpg, id=188, 702.625pt x 526.96875pt>
@@ -748,14 +748,14 @@ File: ./Figures/Optimization_Pref11.9.jpg Graphic file (type jpg)
 
 <use ./Figures/Optimization_Pref11.9.jpg>
 Package pdftex.def Info: ./Figures/Optimization_Pref11.9.jpg used on input line
- 40.
+ 41.
 (pdftex.def)             Requested size: 205.0023pt x 153.74976pt.
 
 <./Figures/trendPlot.jpg, id=189, 702.625pt x 526.96875pt>
 File: ./Figures/trendPlot.jpg Graphic file (type jpg)
 
 <use ./Figures/trendPlot.jpg>
-Package pdftex.def Info: ./Figures/trendPlot.jpg used on input line 46.
+Package pdftex.def Info: ./Figures/trendPlot.jpg used on input line 47.
 (pdftex.def)             Requested size: 205.0023pt x 153.74976pt.
 ) (Sections/Discussion.tex [6 <./Figures/LUTslice_Dw230_Ufs8.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 8--29
@@ -853,7 +853,7 @@ ic/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/fpl/fplr
 c8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "Wind Farm.pdf" (9 pages, 486948 bytes).
+Output written on "Wind Farm.pdf" (9 pages, 486952 bytes).
 PDF statistics:
  259 PDF objects out of 1000 (max. 8388607)
  60 named destinations out of 1000 (max. 500000)
