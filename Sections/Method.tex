@@ -138,14 +138,12 @@ These different conditions are described by the ranges of the parameters, which 
 \end{itemize}   
  To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
 
+\textit{parameter choises:} The Yaw parameter accounts for changes in DELs as a result of yawing the turbine. this parameter was chosen since implementing this effect was one of the main goals of this paper. The other 3 parameters are used to caractarise the flowprofiles in the wakes. Every wake can be caracterised by its size, location, flow profile and one known wind speed.
 
-Lineair interpolation is used to estimate the DEL values between the data points of the LUT. It is assumed that the DELs as a result of the windspeed(U) could  be estimated accurately enough using only the 2 outer bounds. These bound were enough for the goal of this paper, though larger windfarms and different inflow wind velocities would require broadening these ranges. 
- 
-The DEL effect of the Dwake was also found to be accurate enough using fairly large stepsizes. the range of this parameter was chosen so all downwind turbines within .. and .. meters could be accurately fitted. 
+The relative speeds in a wake can be extracted from its size and the gausian flow profile. The absolute windspeed in the wake can then be found by linking these relativeflowprofile to one known windspeed, the U of the free stream. The outer diameter of the wake ,the Dwake, was used as the parameter for the size, and can be fitted for every turbine within a range between ... and ... meter downwind of the upwind turbine.
 
-The y wake parameter however fluctuates over its range, and could not be accurately estimated using lineair interpolation over large stepsizes. as mentioned in... .A stepsize of 10 meters, totaling a total of 51 steps, was found to be sufficiently accurate.
+The location information required for this reasearch is the relative location of wake compared to the downwind turbine. y wake gives the relative location of the center of the wake compared to the center of the downwind turbine. Hight ofset was not jet taken into account.
 
-The yaw parameter is chosen at a stepsize of 10 degree, howerever extra data points were added at+-5 degree to improve the accuracy in the lower yaw regeones. This effect is shown in figure \ref{fig:filler} 
 
 	\begin{figure}
 		\includegraphics[width=\linewidth]{./Figures/pagefiller.jpg}
