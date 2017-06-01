@@ -6,12 +6,28 @@ Conclusion about the results, Power reduction by axial  induction and yaw contro
 
 \subsection{Discussion+Recommendations}
 This article which presents the results of an multi-objective wind farm optimization through yaw control and axial induction is bound to a number of limitations:
-\begin{itemize}
-	\item FLORIS, a low fidelity steady state model is used to calculate the flow in the wind farm. Turbulence and dynamic propagation of the wake as a consequence of turbine settings and the effect of wakes influencing each other are not implemented. Moreover, the the turbine determines its loads only for the most overlapping wake on the turbine, for the other wakes is a mean value taken. The effects in the wakes and the effect of multiple wakes on one turbine can have a significant influence on the loads and power of the turbine. Besides, should be mentioned that the effect of axial induction of the turbine is not applied to the loads but only to the power production of the turbine. 
-	Our results for reference power tracking and load minimizations are only obtained from a three by three setup of wind turbines. Another setup or number of wind turbines may lead to other results. 
-	\item FAST calculates the loads on the turbine based on a modeled inflow field which also does not take turbulence effects in the wake into account. The effect of dynamic propagation of the wake will lead to other load values. The shear effect on the wind speed of the inflow field is calculated for a reference height and  speed. Also the shear constant was set for a flat ocean ground surface. 
-	The continuous wake profile uses only the velocity in the inner wake zone and the diameter of the outer wake zone from Gebraad. \cite{Gebraad2016} The partition of the wake in several wake zones with its own diameter and velocity is not longer implemented. For a sufficient model of the wake, a continuous function with more adjustable variables compared to one Gaussian should be considered.  
-	\item The look-up-table with the DEL values is made for parameters with a certain step size. 
-	\item   
-\end{itemize}   
+\newline
+\\
+The low fidelity steady state model FLORIS is used to calculate the flow in the wind farm. Turbulence and dynamic propagation of the wake as a consequence of turbine settings, and the effect of wakes influencing each other, are not implemented. Moreover, the the turbine determines its loads only for the most overlapping wake on the turbine, for the other wakes is a mean value taken. \\The effects in the wakes and the effect of multiple wakes on one turbine can have a significant influence on the loads and power of the turbine. Besides, axial induction of the turbine is not applied to the loads but only to the power production of the turbine. 
+Furthermore, the results for reference power tracking and load minimizations are only obtained from a three by three setup of wind turbines. Another setup or number of wind turbines may lead to other results. 
+\\\\
+FAST calculates the loads on the turbine based on a modeled inflow field which also does not take turbulence effects in the wake into account. The effect of dynamic propagation of the wake will lead to other load values. The shear effect on the wind speed of the inflow field is calculated for a reference height and  speed. Also the shear constant was set for a flat ocean ground surface.
+\newline 
+The continuous wake profile uses only the velocity in the inner wake zone and the diameter of the outer wake zone from Gebraad. \cite{Gebraad2016} The partition of the wake in several wake zones with its own diameter and velocity is not longer implemented. For a sufficient model of the wake, a continuous function with more adjustable variables compared to one Gaussian function should be considered.  
+\\ 
+\\
+Linear interpolation out of the LUT is used to calculate the DEL values for intermediate parameter values. This can lead to a deviation in DEL values with respect to a direct calculation. 
+For one range of calculations of the LUT some extreme values occur. These values have been smoothed. However, these values lay out of the scope of the optimization problem so it had not an effect on the optimization at all.   
+\\
+\\
+Individual Pitch Control is not implemented in the values of the LUT, but could be an interesting addition to reduce the loads.\cite{Wilson2017}  
+\\
+\\
+Although the possibility of minimizing loads by reducing power and the change of yaw and axial induction is demonstrated in this article, a global minimum in the optimization problem is not found. Several simulations with the same input settings lead to small differences in final power and load values. Moreover, the yaw and axial induction settings were different for every simulation. \newline
+The minimizing step of the loads is executed for the whole wind farm. There is no limitation on the loads for one individual wind turbine.
+A suggestion for further research is to set a constraint for the maximal DEL value for each of the turbine in the wind farm. This could be a solution for more identical results regarding the turbine settings.
+
+  
+  
+	   
 
