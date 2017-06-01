@@ -138,18 +138,9 @@ These different conditions are described by the ranges of the parameters, which 
 \end{itemize}   
  To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
 
-\textit{parameter choises:} The Yaw parameter accounts for changes in DELs as a result of yawing the turbine. this parameter was chosen since implementing this effect was one of the main goals of this paper. The other 3 parameters are used to caractarise the flowprofiles in the wakes. Every wake can be caracterised by its size, location, flow profile and one known wind speed.
-
-The relative speeds in a wake can be extracted from its size and the gausian flow profile. The absolute windspeed in the wake can then be found by linking these relativeflowprofile to one known windspeed, the U of the free stream. The outer diameter of the wake ,the Dwake, was used as the parameter for the size, and can be fitted for every turbine within a range between ... and ... meter downwind of the upwind turbine.
-
-The location information required for this reasearch is the relative location of wake compared to the downwind turbine. y wake gives the relative location of the center of the wake compared to the center of the downwind turbine. Hight ofset was not jet taken into account.
 
 
-	\begin{figure}
-		\includegraphics[width=\linewidth]{./Figures/pagefiller.jpg}
-		\caption{page filler, not the accurate figure.}
-		\label{fig:filler}
-	\end{figure} 
+ This paper uses the wake diameter as a parameter to characterise the wakes. However, as stated before are the diameter of the wake and the downwind distance related by fitting equations. This means that the distance could have been used as parameter just as well. The choice for the diameter comes since Floris searches for the best fit of the shape of a wake in the LUT data. And the diameter gives a more direct interpretation of the shape of the wake than the distance does, subsequently meaning that the diameter comes more intuitively.
 
  
  
