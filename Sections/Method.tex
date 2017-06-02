@@ -67,7 +67,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 %\noindent
 
-\subsection{FAST \& MLife} FAST is a programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) \cite{Jonkman2005}. By evaluating a flow field, FAST computes the bending moment of a blade. Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). (these DELs are better why??)
+\subsection{FAST \& MLife} FAST is a programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) \cite{Jonkman2005}. It computes the bending moment of a blade given (defineerbare/...) input data. Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). (these DELs are better why??)
 
 
 \begin{figure}
@@ -78,10 +78,12 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 %\noindent
 
-\subsubsection{Inflow files, Flow field}
-FAST uses wind turbine specifications as well as wind flow situations to generate load data. These flow files are 
+\subsubsection{Flow field}
+FAST uses external input files as input for the simulation data. This paper mostly used the flow field as input towards FAST. 
+more intro:... making it more representative for real life, by implementing both a more acurate flow distribution as natural fenomena.
+
 \paragraph{Gaussian wake}
-FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in paragraph \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is chosen \cite{Bastankhah2016}. The difference of wake shape between a Gaussian and discrete shape can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
+FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is chosen \cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
 
 \begin{equation}
 \label{eq:gaus}
@@ -97,12 +99,12 @@ Where fit parameter $n$ can be modified to change the width of the Gaussian. Con
 (clearly note the relation between the gausian and the wakes from FLORIS)
 
 \paragraph{Wind shear} \label{sec:windshear}
-Wind shear can cause an important difference in velocity speeds between the rotor hub height, the end of the rotor blades at their highest points and the end of the rotor blades at their lowest point \cite{Firtin2011}.  The velocity distribution is calculated with, 
+An other aspect added to inprove the the wind ... is wind shear, this is an natural phenomanen. opstructions and earth surface roughnes cause the wind to slow down closer to earth. This causes a significant diferance in windspeed over the hight ranges of the turbine\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
 \end{equation}
-where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. Coefficient $\alpha$ is fixed at value 0.1, reflecting a terrain type close to ocean and smooth ground \cite{Firtin2011}. The wind shear is implemented in the flow field. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
+where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
 
 \begin{figure}
 	\centering
