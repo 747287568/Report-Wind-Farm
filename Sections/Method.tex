@@ -12,8 +12,7 @@
 
 %\noindent
 
-\subsection{FLORIS} The FLORIS, or FLOw Redirection and Induction in Steady state, model is used for the generation of wake propagation and power output data of windfarms as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}.
-FLORIS is a relative accurate model\cite{Dijk2016} with a relatively low computation time, since it is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation. 
+\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a windfarm while also generating power output data of windfarms as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a relative accurate model\cite{Dijk2016} with low computation time. This is since it is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, meaning.... 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
@@ -46,10 +45,10 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 
 
-
+%//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 
-\subsection{FAST \& MLife} FAST is a programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) \cite{Jonkman2005}. It computes the bending moment of a blade given (defineerbare/...) input data. Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). (these DELs are better why??)
+\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005} (klopt deze cite nog met deze benaming?), among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELS are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -65,7 +64,7 @@ FAST uses external input files as input for the simulation data. This paper most
 more intro:... making it more representative for real life, by implementing both a more acurate flow distribution as natural fenomena.
 
 \paragraph{Gaussian wake}
-FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is chosen \cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
+FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
 
 \begin{equation}
 \label{eq:gaus}
@@ -74,11 +73,11 @@ G(y, z) = A [e^{-(\frac{y^2}{2\sigma_y} + \frac{z^2}{2\sigma_z})}]
 The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of the inner wake zone, $U_{w,1}$, as FLORIS models it(!!verwoording mag anders). $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. These standard deviations are related to the outer wake zone $D_{w,i,q=3}$ following Equation \ref{eq:sigm},
 \begin{equation}
 \label{eq:sigm}
-\sigma_y,\sigma_z = D_{w,i,q=3}/n 
+\sigma_y,\sigma_z = \frac{D_{w,i,q=3}}{n} 
 \end{equation}
 \\
-Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit the Gaussian to the wake zones of FLORIS. (Figure \ref{fig:disgaus})
-(clearly note the relation between the gausian and the wakes from FLORIS)
+Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}).
+(clearly note the relation between the Gaussian and the wakes from FLORIS!!)
 
 \paragraph{Wind shear} \label{sec:windshear}
 An other aspect added to inprove the the wind ... is wind shear, this is an natural phenomanen. opstructions and earth surface roughnes cause the wind to slow down closer to earth. This causes a significant diferance in windspeed over the hight ranges of the turbine\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
@@ -86,6 +85,7 @@ An other aspect added to inprove the the wind ... is wind shear, this is an natu
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
 \end{equation}
+(bron voor deze Eq?)
 where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
 
 \begin{figure}
