@@ -31,7 +31,7 @@ The size of the wake diameter is calculated using Eq \ref{eq:Dw}. let the $D_i$ 
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The wake velocity depends on the downwind distance $(x)$ as well. As shown in Eq \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$(<--) and the axial induction factor $a_i$. This wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}. The axial induction factor is a value for the wind speed reduction behind a turbine relative to its own rotor speed.    
+The wake velocity can also be related to the downwind distance $(x)$. As shown in Equation \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$(<--) and the axial induction factor $a_i$. This wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. (--> =?)The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad\cite{Gebraad2016}.(<anders?) The axial induction factor is a value for the wind speed reduction behind a turbine relative to its own rotor speed.   (Eq 3 is niet echt uitgelegd, nodig?-->) 
 
 \begin{equation}
 \label{eq:Uw}
@@ -48,7 +48,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005},(-->) among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELS are... \cite{Mlife}.
+\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005},(-->) among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -60,8 +60,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %\noindent
 
 \subsubsection{Flow field}
-FAST uses external input files as input for the simulation data. This paper mainly used the flow field as input towards FAST.
-more intro:... making it more representative for real life, by implementing both a more realistic flow distribution and natural fenomena.
+FAST uses external input files for its simulations. One of these input files contains the flow field information. It contains the data of the wind flow as it falls on the turbine blades. This study made this wind data more representative for real life, by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural fenomena, the shear effect.
 
 \paragraph{Gaussian wake}
 FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
@@ -80,7 +79,7 @@ Where fit parameter $n$ can be modified to change the width of the Gaussian. Con
 (clearly note the relation between the Gaussian and the wakes from FLORIS!!)
 
 \paragraph{Wind shear} \label{sec:windshear}
-An other aspect added to inprove the the wind ... is wind shear, this is an natural phenomanen. opstructions and earth surface roughnes cause the wind to slow down closer to earth. This causes a significant diferance in windspeed over the hight ranges of the turbine\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
+An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of obstructions and earth surface roughness causing the wind to slow down closer to earth. This results in a significant difference in wind speed over the hight ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
