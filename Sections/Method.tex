@@ -1,31 +1,13 @@
 \section{Method} \label{sec:method}
-	The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. The implementation of this is described in this section. \newline
-	An overview of the optimization procedure used can be seen in Figure \ref{fig:optim}.
-	The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations which are determined by four parameters and then stored in a look-up-table (LUT). \newline
+	The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
+	An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
+	The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
-
-	To realize power regulation and minimizing loads by yaw control and axial induction, it is necessary to know the effects of different flow conditions on the total power of the wind farm and the effect of different flow conditions on the loads for each of the turbine. Moreover, there need to be an optimizer which executes the optimization to approach a set value for the power and to minimize the loads.\newline
-
-
-	The total power of the wind farm is calculated with the FLORIS-model. Besides, FLORIS is able to adjust the turbine configurations, the axial induction and yaw position.  
-	The effect of the wind flow on a turbine, regarding the loads, are given by the programs FAST and MLife. The output of these programs are Damage Equivalent Load values (DELs), which are a measure of equivalent load damage to the turbine concerning the material properties.\cite{Chougule2016} These DELs are calculated for a different set of wind and turbine conditions and are stored in a look-up table(LUT).
-
-	
-	The optimizer takes the desired power production of the wind farm as an input. It used the configurations of the turbines from FLORIS to find the corresponding DEL values in the look-up table. If the configurations of the turbines are an improvement compared to the previous one, i.e. a improved power control or a reduce in the loads, FLORIS will save this turbine configurations. An overview of the optimization procedure is shown in Figure \ref{fig:optim}. 
-	\\
-	\\
-	In the following sections, different models and model steps, used to perform the optimization, are explained:
-	
-	
-	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
 		\caption{Overview of the optimization procedure.}
 		\label{fig:optim}
 	\end{figure}
-
-
-  
 
 
 %\noindent
