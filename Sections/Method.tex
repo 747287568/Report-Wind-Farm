@@ -12,7 +12,7 @@
 
 %\noindent
 
-\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a windfarm while also generating power output data of windfarms as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a relative accurate model\cite{Dijk2016} with low computation time. This is since it is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, meaning.... 
+\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a windfarm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
@@ -31,7 +31,7 @@ The size of the wake diameter is calculated using Eq \ref{eq:Dw}. let the $D_i$ 
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The wake velocity depends on the downwind distance $(x)$ as well. As shown in Eq \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$ (<--). This wake decay coefficient is multiplied by the axial induction factor and subtracted from the free stream velocity $U_i$. The axial induction factor is a value for the decrease in wind velocity behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}   
+The wake velocity depends on the downwind distance $(x)$ as well. As shown in Eq \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$(<--) and the axial induction factor $a_i$. This wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}. The axial induction factor is a value for the wind speed reduction behind a turbine relative to its own rotor speed.    
 
 \begin{equation}
 \label{eq:Uw}
@@ -47,8 +47,8 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
-
-\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005} (klopt deze cite nog met deze benaming?), among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELS are... \cite{Mlife}.
+%(klopt deze cite nog met deze benaming?),-->
+\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005},(-->) among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELS are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -60,8 +60,8 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %\noindent
 
 \subsubsection{Flow field}
-FAST uses external input files as input for the simulation data. This paper mostly used the flow field as input towards FAST. 
-more intro:... making it more representative for real life, by implementing both a more acurate flow distribution as natural fenomena.
+FAST uses external input files as input for the simulation data. This paper mainly used the flow field as input towards FAST.
+more intro:... making it more representative for real life, by implementing both a more realistic flow distribution and natural fenomena.
 
 \paragraph{Gaussian wake}
 FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
