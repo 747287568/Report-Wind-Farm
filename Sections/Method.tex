@@ -12,12 +12,12 @@
 
 %\noindent
 
-\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a windfarm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
+\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
 %As can be seen in Figure \ref{fig:wake}, 
-FLORIS generates a wake model which divides the wake into three different zones as shown in Figure\ref{fig:wake}. These zones are as the near wake, the far wake, and the mixing zone, and are denoted by $q$. Each zone has its own diameter and wind speed, which are calculated by FLORIS using Equations(\ref{eq:Dw} to \ref{eq:c}). 
+FLORIS generates a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are defined as the near wake, the far wake, and the mixing zone, and are denoted by $q$. Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations (\ref{eq:Dw} to \ref{eq:c}). 
 
 
 \begin{figure}
@@ -26,16 +26,16 @@ FLORIS generates a wake model which divides the wake into three different zones 
 	\label{fig:wake}
 \end{figure}
 
-The size of the wake diameter is calculated using Eq \ref{eq:Dw}. let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad\cite{Gebraad2016}. The size of the wake diameter $D_{w,q,i}$ increases proportionally to the downwind distance ($x$). 
+The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The size of the wake diameter $D_{w,q,i}$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine see Figure \ref{fig:optim}.   (not true!! only acurate for q=3, which is not specified)
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The wake velocity can also be related to the downwind distance $(x)$. As shown in Equation \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$(<--) and the axial induction factor $a_i$. This wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. (--> =?)The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad\cite{Gebraad2016}.(<anders?) The axial induction factor is a value for the wind speed reduction behind a turbine relative to its own rotor speed.   (Eq 3 is niet echt uitgelegd, nodig?-->) 
+The velocity in the wake can also be related to this downwind distance $x$. As shown in Equation \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. (<--note bart). The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle\cite{Gebraad2016}. And the $X_i$ is ... ?
 
 \begin{equation}
 \label{eq:Uw}
-U_{w,i}(x,y) = U_i\left( {1-2a_ic_i(x,y)} \right)
+U_{w,i}(x,y) = U_i\left( {1-2a_{i}c_{i,q}(x)} \right)
 \end{equation} 
 
 \begin{equation}
@@ -48,7 +48,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005},(-->) among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
+\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -78,7 +78,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). (clearly note the relation between the Gaussian and the wakes from FLORIS!!)
 
 \paragraph{Wind shear} \label{sec:windshear}
-An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of obstructions and earth surface roughness causing the wind to slow down closer to earth. This results in a significant difference in wind speed over the hight ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
+An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
@@ -152,8 +152,8 @@ The cost function depends on two variables: a normalized power and a normalized 
 
 \begin{equation}
 \begin{aligned}
-J(P,DEL) = c*((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
-(1-c)*DEL(a_i,\gamma_i)/DEL_{base}
+J(P,DEL) = c((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
+(1-c)DEL(a_i,\gamma_i)/DEL_{base}
 \end{aligned}
  \label{eq:costf}
 \end{equation}
