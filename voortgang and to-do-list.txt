@@ -1,0 +1,20 @@
+Hey Guys,
+
+Hierbij de stand van zaken zo als ik ze denk te hebben afgesproken:
+
+nieuwe opbouw gekozen: extra subsection in de method, genaamd simulation cases. 
+resultaten sectie wordt nog om geschreven om meer een prove of concept te geven
+de manier van discussion moet hier op inspringen (jurriaan en jochem hebben dit beter voor ogen, uitleg?)
+
+abstract - done, niels?
+inleiding - done, jurriaan? controlle door max
+method- luuk werkt laatste puntjes af, LUT door Jochem, simulation cases door Jurriaan.
+resultaten- wordt herschreven door Jurriaan en Jochem.
+discussion- (vooral de interpertatie van data moet nog worden geschreven)
+                   - ook het bestaande stukje moet nog flink worden herschreven
+
+Figuren worden kloppend gemaakt door Jurriaan en/of Jochem. 
+
+to do's: (uit te breiden)
+captions bij figuren e.d.
+references checken na alle aanpassingen

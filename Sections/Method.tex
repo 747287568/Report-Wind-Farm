@@ -146,10 +146,10 @@ These different conditions are described by the ranges of the parameters, which 
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-To optimize for power reference tracking and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These can influence the power and loads significantly, so both are combined in a cost function. \cite{Marden2013}\cite{Dijk2016} 
+To optimize for power regulating and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These determine the flow field, from which the DELs are determined, so both are combined in the following cost function. \cite{Marden2013}\cite{Dijk2016} 
 
 \subsubsection{Cost Function} \label{sec:costfunction}
-The cost function depends on two variables: a normalized power and a normalized load variable. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
+The cost function depends on two variables: a normalized power and a normalized load. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
 
 \begin{equation}
 \begin{aligned}
