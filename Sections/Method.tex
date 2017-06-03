@@ -26,7 +26,7 @@ FLORIS generates a wake model which divides the wake into three different zones 
 	\label{fig:wake}
 \end{figure}
 
-The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The size of the wake diameter $D_{w,q,i}$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine see Figure \ref{fig:optim}.   (not true!! only acurate for q=3, which is not specified)
+The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in the paper. for that reason, unless specified otherwise, is this what is meant when referred to a wake diameter. Also is the simplified notation $D_w$ is used for easer reeding. This diameter $D_w$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine. (For orientation see Figure \ref{fig:optim}.)
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
@@ -63,7 +63,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 FAST uses external input files for its simulations. One of these input files contains the flow field information. It contains the data of the wind flow as it falls on the turbine blades. This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
 \paragraph{Gaussian wake}
-FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
+FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones, a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
 
 \begin{equation}
 \label{eq:gaus}
@@ -75,7 +75,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 \sigma_y,\sigma_z = \frac{D_{w,i,q=3}}{n} 
 \end{equation}
 \\
-Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). (clearly note the relation between the Gaussian and the wakes from FLORIS!!)
+Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. (clearly note the importance of the relation between the Gaussian and the wakes from FLORIS!!) 
 
 \paragraph{Wind shear} \label{sec:windshear}
 An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
@@ -84,7 +84,7 @@ An other aspect added to improve the accuracy of the wind data is wind shear. Th
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
 \end{equation}
 (bron voor deze Eq?)
-where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake for both before and after the implementation of shear, clearly showing the significance of the shear effect.
+where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake for both before and after the implementation of shear, clearly showing the effect of the shear effect.
 
 \begin{figure}
 	\centering
