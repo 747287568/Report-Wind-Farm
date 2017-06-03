@@ -1,13 +1,13 @@
 \section{Method} \label{sec:method}
-	The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
-	An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-	The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
+An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
-	\begin{figure}
-		\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
-		\caption{Overview of the optimization procedure.}
-		\label{fig:optim}
-	\end{figure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
+	\caption{Overview of the optimization procedure.}
+	\label{fig:optim}
+\end{figure}
 
 
 %\noindent
@@ -52,7 +52,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{./Figures/PlotGausDiscWakeDWake180U6yaw0.png} %Plot with Gauss vs Discr flow, Dwake = 180, u_mean = 6, yaw = 0
+  \includegraphics[width=\linewidth]{./Figures/PlotGausDiscWakeDWake180U6yaw0.eps} %Plot with Gauss vs Discr flow, Dwake = 180, u_mean = 6, yaw = 0
   \caption{Discrete wake versus Gaussian wake} %for Dwake = 180 m, U = 6 m/s, and yaw = 0
   \label{fig:disgaus}
 \end{figure}
