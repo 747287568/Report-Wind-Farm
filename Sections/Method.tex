@@ -12,12 +12,12 @@ The power output of a wind farm as well as the wake propagation in this wind far
 
 %\noindent
 
-\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a windfarm while also generating power output data of windfarms as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a relative accurate model\cite{Dijk2016} with low computation time. This is since it is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, meaning.... 
+\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
 %As can be seen in Figure \ref{fig:wake}, 
-FLORIS generates a wake model which divides the wake into three different zones as shown in Figure\ref{fig:wake}. These zones are as the near wake, the far wake, and the mixing zone, and are denoted by $q$. Each zone has its own diameter and wind speed, which are calculated by FLORIS using Equations(\ref{eq:Dw} to \ref{eq:c}). 
+FLORIS generates a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are defined as the near wake, the far wake, and the mixing zone, and are denoted by $q$. Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations (\ref{eq:Dw} to \ref{eq:c}). 
 
 
 \begin{figure}
@@ -26,16 +26,16 @@ FLORIS generates a wake model which divides the wake into three different zones 
 	\label{fig:wake}
 \end{figure}
 
-The size of the wake diameter is calculated using Eq \ref{eq:Dw}. let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad\cite{Gebraad2016}. The size of the wake diameter $D_{w,q,i}$ increases proportionally to the downwind distance ($x$). 
+The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in the paper. for that reason, unless specified otherwise, is this what is meant when referred to a wake diameter. Also is the simplified notation $D_w$ is used for easer reeding. This diameter $D_w$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine. (For orientation see Figure \ref{fig:optim}.)
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The wake velocity depends on the downwind distance $(x)$ as well. As shown in Eq \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c(x,y)$ (<--). This wake decay coefficient is multiplied by the axial induction factor and subtracted from the free stream velocity $U_i$. The axial induction factor is a value for the decrease in wind velocity behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in \ref{eq:c}. The model parameter $M_{U,q}$, which depends on the wake zone and the yaw angle, is calculated by Gebraad.\cite{Gebraad2016}   
+The velocity in the wake can also be related to this downwind distance $x$. As shown in Equation \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. (<--note bart). The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle\cite{Gebraad2016}. And the $X_i$ is ... ?
 
 \begin{equation}
 \label{eq:Uw}
-U_{w,i}(x,y) = U_i\left( {1-2a_ic_i(x,y)} \right)
+U_{w,i}(x,y) = U_i\left( {1-2a_{i}c_{i,q}(x)} \right)
 \end{equation} 
 
 \begin{equation}
@@ -47,8 +47,8 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
-
-\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005} (klopt deze cite nog met deze benaming?), among others, it computes the out of plane bending moments of the turbine blades.(<-- these are?) Since the bending moment of a blade does not give direct information about the effect on the life-cycle time of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELS are... \cite{Mlife}.
+%(klopt deze cite nog met deze benaming?),-->
+\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -60,33 +60,31 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %\noindent
 
 \subsubsection{Flow field}
-FAST uses external input files as input for the simulation data. This paper mostly used the flow field as input towards FAST. 
-more intro:... making it more representative for real life, by implementing both a more acurate flow distribution as natural fenomena.
+FAST uses external input files for its simulations. One of these input files contains the flow field information. It contains the data of the wind flow as it falls on the turbine blades. This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
 \paragraph{Gaussian wake}
-FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
+FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones, a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
 
 \begin{equation}
 \label{eq:gaus}
 G(y, z) = A [e^{-(\frac{y^2}{2\sigma_y} + \frac{z^2}{2\sigma_z})}]
 \end{equation}
-The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of the inner wake zone, $U_{w,1}$, as FLORIS models it(!!verwoording mag anders). $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. These standard deviations are related to the outer wake zone $D_{w,i,q=3}$ following Equation \ref{eq:sigm},
+The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of the inner wake zone, $U_{w,1}$, as generated by FLORIS. $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. These standard deviations are related wake diameter $D_{w}$ following Equation \ref{eq:sigm},
 \begin{equation}
 \label{eq:sigm}
-\sigma_y,\sigma_z = \frac{D_{w,i,q=3}}{n} 
+\sigma_y,\sigma_z = \frac{D_{w}}{n} 
 \end{equation}
 \\
-Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}).
-(clearly note the relation between the Gaussian and the wakes from FLORIS!!)
+Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. (clearly note the importance of the relation between the Gaussian and the wakes from FLORIS!!) 
 
 \paragraph{Wind shear} \label{sec:windshear}
-An other aspect added to inprove the the wind ... is wind shear, this is an natural phenomanen. opstructions and earth surface roughnes cause the wind to slow down closer to earth. This causes a significant diferance in windspeed over the hight ranges of the turbine\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
+An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
 \end{equation}
 (bron voor deze Eq?)
-where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. The difference between a flow field with and without wind shear can be seen in Figure \ref{fig:windshear}
+where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake for both before and after the implementation of shear, clearly showing the effect of the shear effect.
 
 \begin{figure}
 	\centering
@@ -147,15 +145,15 @@ These different conditions are described by the ranges of the parameters, which 
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-To optimize for power reference tracking and load minimization, a game-theoretic approach was used.\cite{Marden2013} The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These can influence the power and loads significantly, so both are combined in a cost function. \cite{Marden2013}\cite{Dijk2016} 
+To optimize for power regulating and load minimization, a game-theoretic approach was used\cite{Marden2013}. The optimization algorithm searches for the optimal yaw and axial induction settings of each individual turbine. These determine the flow field, from which the DELs are determined, so both are combined in a cost function \cite{Marden2013}\cite{Dijk2016}. 
 
 \subsubsection{Cost Function} \label{sec:costfunction}
-The cost function depends on two variables: a normalized power and a normalized load variable. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
+The cost function depends on two variables: a normalized power and a normalized load. To achieve the optimal yaw and axial induction settings a mixed-objective cost function is defined as follows:
 
 \begin{equation}
 \begin{aligned}
-J(P,DEL) = c*((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
-(1-c)*DEL(a_i,\gamma_i)/DEL_{base}
+J(P,DEL) = c((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
+(1-c)DEL(a_i,\gamma_i)/DEL_{base}
 \end{aligned}
  \label{eq:costf}
 \end{equation}
