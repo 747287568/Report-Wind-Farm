@@ -1,7 +1,7 @@
 \section{Method} \label{sec:method}
 The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
@@ -126,18 +126,12 @@ $^*$Input values are \{-30, -10, -5, 0, 5, 10, 30\}.
 \end{table}
 
 %\noindent
-\subsection{LUT} \label{sec:lut}
-It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are pre-calculated for a wide variety of wind field conditions and stored in a look-up-table (LUT).
+\subsection{Lookup table} \label{sec:lut}
+It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table (LUT).
 
 The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the LUT.
 
-
-
-
- This paper uses the wake diameter as a parameter to characterise the wakes. However, as stated before are the diameter of the wake, the downwind distance and the windspeed reduction behind the turbine(Udef) related by fitting equations. This means that the distance and the Udef could have been used as parameter just as well. The choice for the diameter comes since Floris searches for the best fit of the shape of a wake in the LUT data. And the diameter gives a more direct interpretation of the shape of the wake than the others do, subsequently meaning that the diameter comes more intuitively.
-
- 
- 
+The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$, $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equations \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the height of the wind turbine hub, the z-location of the wake center is placed here. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field is defined (Figure \ref{fig:windshear}). The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen so that it covers all situations encountered during the simulations needed for this paper.
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
