@@ -2,7 +2,7 @@
 The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this is implemented.
 
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on the root of the turbine blades. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs). these are needed to be able to compare the damaging loads for the different cases \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on the root of the turbine blades. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs). These will be used for damage comparison of the flow profiles \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
 \begin{figure*}
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.pdf}
@@ -51,7 +51,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %(klopt deze cite nog met deze benaming?),-->
 \subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum. Figure ?
 
-This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{Mlife} \cite{Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{MLife} \cite{Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -80,7 +80,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 \sigma_y,\sigma_z = \frac{D_{w}}{n} 
 \end{equation}
 \\
-Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. 
+Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will have this Gaussian distribution implemented as well. 
 
 \paragraph{Wind shear} \label{sec:windshear}
 Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
@@ -88,8 +88,7 @@ Another aspect added to improve the accuracy of the wind data is wind shear. Thi
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
 \end{equation}
-(bron voor deze Eq?)
-where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake for both before and after the implementation of shear, clearly showing the effect of the shear effect.
+Here $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake both before and after the implementation of shear.
 
 \begin{figure}
 	\centering
