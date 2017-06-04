@@ -32,7 +32,7 @@ The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. 
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The velocity in the wake can also be related to this downwind distance $x$. As shown in Equation \ref{eq:Uw}, is the wake velocity an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. (<--note bart). The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle\cite{Gebraad2016}. And the $X_i$ is ... ?
+The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle\cite{Gebraad2016}. And the $X_i$ is ... ?
 
 \begin{equation}
 \label{eq:Uw}
@@ -139,7 +139,7 @@ The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-For the optimization, a trade off has to be made between power regulation and load minimization. This trade off is defined in a cost function \cite{Marden2013, Dijk2016}. The optimal turbine configuration, defined by the yaw and axial induction settings for all individual turbines, is found by minimization of this cost function. The optimization method used is game-theoretic approach\cite{Marden2013}. It performs the simulation with different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
+For the optimization, a trade off has to be made between power regulation and load minimization. This trade off is defined in a cost function \cite{Marden2013, Dijk2016}. The optimal turbine configuration can be found by minimization of this cost function. And is defined by individual yaw and axial induction settings for each turbine. The optimization method used is game-theoretic approach \cite{Marden2013}. Which performs simulations for different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
  
 
 \subsubsection{Cost Function} \label{sec:costfunction}
@@ -148,7 +148,7 @@ The cost function is a mixed-objective cost function, minimizing the combined lo
 
 \begin{equation}
 \begin{aligned}
-J(P,DEL) = c\cdot(\frac{P_{ref}-P(a_i,\gamma_i)}{P_{bw}})^2  + \\
+J(P,DEL) = c\cdot\Big(\frac{P_{ref}-P(a_i,\gamma_i)}{P_{bw}}\Big)^2  + \\
 \frac{(1-c)\cdot DEL(a_i,\gamma_i)}{DEL_\text{{base}}}
 \end{aligned}
  \label{eq:costf}
@@ -156,7 +156,7 @@ J(P,DEL) = c\cdot(\frac{P_{ref}-P(a_i,\gamma_i)}{P_{bw}})^2  + \\
 Here $c$ is the tuning parameter defining the relative importance of the power and loads optimization objectives. $P_{ref}$ is the reference power, which is desired power output of the wind farm that the power regulation objective wishes to obtain. $P_{bw}$ and $DEL_{base}$ are the power and loads baselines respectively, among others used to create normalized variables.
 \newline
 
-To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result power outputs further away from the reference are heavily penalized. The power error at which the emphasis shifts to the loads is defined by $P_{bw}$.
+To obtain power production close to the reference, the power objective of the cost function is a quadratic difference. As a result power outputs further away from the reference are heavily penalized. The power error at which the emphasis shifts to the loads is controlled using $P_{bw}$.
 
 
 \subsubsection{Game Theory} \label{sec:gametheory}
