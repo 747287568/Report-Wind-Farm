@@ -145,24 +145,25 @@ These different conditions are described by the ranges of the parameters, which 
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-For the optimization, a trade off has to be made between power regulation and load minimization. This trade off can be defined by a cost function \cite{Marden2013}\cite{Dijk2016}. The optimal turbine configuration, defined by the yaw ad axial induction settings for all individual turbines, is found by minimization of this cost function. The optimization method used is game-theoretic approach\cite{Marden2013}. It preforms the simulation with different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
+For the optimization, a trade off has to be made between power regulation and load minimization. This trade off is defined in a cost function \cite{Marden2013}\cite{Dijk2016}. The optimal turbine configuration, defined by the yaw ad axial induction settings for all individual turbines, is found by minimization of this cost function. The optimization method used is game-theoretic approach\cite{Marden2013}. It preforms the simulation with different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
  
 
 \subsubsection{Cost Function} \label{sec:costfunction}
 
-The cost function is a mixed-objective cost function, minimizing the combined loads without straying to far away from the reference power of the wind farm. It uses the power and load data from the simulations combined with optimization parameters $c$ and $P_bw$ to evaluate each turbine configuration case, defined as follows: 
+The cost function is a mixed-objective cost function, minimizing the combined loads without straying to far away from the reference power of the wind farm. It uses the power and load data from the simulations combined with optimization parameters $c$ and $P_{bw}$ to evaluate each turbine configuration case, and is defined as follows: 
 
 \begin{equation}
 \begin{aligned}
-J(P,DEL) = c((P_{ref}-P(a_i,\gamma_i))/P_{bw})^2  + \\
-(1-c)DEL(a_i,\gamma_i)/DEL_{base}
+J(P,DEL) = c\cdot(\frac{(P_{ref}-P(a_i,\gamma_i))}{P_{bw}})^2  + \\
+\frac{(1-c)\cdot DEL(a_i,\gamma_i)}{DEL_\text{{base}}}
 \end{aligned}
  \label{eq:costf}
 \end{equation}
-Where $c$ is the tuning parameter defining the relative importance of the power and loads optimization objectives. $P_{ref}$ is the desired power output of the wind farm that the regulation wishes to obtain. $P_{bw}$ and $DEL_{base}$ are the power and loads baselines respectively, to create normalized variables.
+Here $c$ is the tuning parameter defining the relative importance of the power and loads optimization objectives. $P_{ref}$ is the reference power, which is desired power output of the wind farm that the power regulation objective wishes to obtain. $P_{bw}$ and $DEL_{base}$ are the power and loads baselines respectively, among others used to create normalized variables.
 \newline
 
-To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result power outputs further away from the reference are heavily penalized. $P_{bw}$ is used to regulate at which power error the emphasis shifts to the loads.
+To obtain power production close to the reference, the power part of the cost function is a quadratic difference. As a result power outputs further away from the reference are heavily penalized. The power error at which the emphasis shifts to the loads is defined by $P_{bw}$.
+
 
 \subsubsection{Game Theory} \label{sec:gametheory}
 The game-theoretic approach uses random perturbations on the yaw angles and the axial induction factors to minimize the cost function. When new values for yaw and axial induction settings give an improvement regarding the cost function, the settings are saved and the process will be repeated with the new settings. Because of the fact it uses random perturbations, the game theoretic approach is an adequate optimizer to find the global minimum of the cost function.\cite{Dijk2016}
