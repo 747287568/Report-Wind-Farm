@@ -1,6 +1,6 @@
 # different files that are generated after build
 *.aux
 *.log
-*.pdf
+/*.pdf
 *.synctex.gz
 *.out
