@@ -1,7 +1,7 @@
 \section{Method} \label{sec:method}
 The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
@@ -12,7 +12,7 @@ The power output of a wind farm as well as the wake propagation in this wind far
 
 %\noindent
 
-\subsection{FLORIS} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
+\subsection{FLORIS} \label{sec:floris} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
@@ -48,7 +48,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
 
 
 \begin{figure}
@@ -127,11 +127,11 @@ $^*$Input values are \{-30, -10, -5, 0, 5, 10, 30\}.
 
 %\noindent
 \subsection{Lookup table} \label{sec:lut}
-It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table (LUT).
+It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table.
 
-The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the LUT.
+The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the lookup table.
 
-The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$, $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equations \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the height of the wind turbine hub, the z-location of the wake center is placed here. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field is defined (Figure \ref{fig:windshear}). The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen so that it covers all situations encountered during the simulations needed for this paper.
+The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$, $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equation \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the hub height of the wind turbines, the z-location of the wake center is placed at that height. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field, as illustrated in Figure \ref{fig:windshear}, is defined. The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen so that all required situations are included within the lookup table.
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
