@@ -13,7 +13,7 @@ The power output of a wind farm as well as the wake propagation in this wind far
 
 %\noindent
 
-\subsection{FLORIS} \label{sec:floris} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction\cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time\cite{Dijk2016}. 
+\subsection{FLORIS} \label{sec:floris} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model works as a function of the yaw misalignment and the axial induction \cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relative accurate model with low computation time \cite{Dijk2016}. 
 
 \subsubsection{Wake modelling}
 \label{wakemodel}
@@ -32,7 +32,7 @@ The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. 
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle\cite{Gebraad2016}. And the $X_i$ is ... ?
+The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle \cite{Gebraad2016}. And the $X_i$ is ... ?
 
 \begin{equation}
 \label{eq:Uw}
@@ -49,9 +49,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum. Figure ?
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum. Figure ?
 
-This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{MLife} \cite{Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{MLife,Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -68,7 +68,7 @@ The wind flow that falls on the turbine blades are inputted into FAST as flow fi
 This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
 \paragraph{Gaussian wake}
-FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones, a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
+FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones, a Gaussian distribution of the flow field is introduced \cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
 
 \begin{equation}
 \label{eq:gaus}
@@ -83,7 +83,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will have this Gaussian distribution implemented as well. 
 
 \paragraph{Wind shear} \label{sec:windshear}
-Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
+Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs \cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
