@@ -1,5 +1,6 @@
 \section{Method} \label{sec:method}
-The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
+The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this is implemented.
+
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
 The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
@@ -17,16 +18,16 @@ The power output of a wind farm as well as the wake propagation in this wind far
 \subsubsection{Wake modelling}
 \label{wakemodel}
 %As can be seen in Figure \ref{fig:wake}, 
-FLORIS generates a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are defined as the near wake, the far wake, and the mixing zone, and are denoted by $q$. Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations (\ref{eq:Dw} to \ref{eq:c}). 
+FLORIS contains a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are denoted by $q$ and defined as the near wake ($q$=1), the far wake ($q$=2) and the mixing zone ($q$=3). Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations \ref{eq:Dw} to \ref{eq:c}. 
 
 
 \begin{figure}
   	\includegraphics[width=\linewidth]{./Figures/WakeFLORIS.png}
-  	\caption{Simplified top view representation of a wake of a turbine by FLORIS.\cite{Gebraad2016}   }
+  	\caption{Simplified top view representation of a wake of a turbine by FLORIS\cite{Gebraad2016}.}
 	\label{fig:wake}
 \end{figure}
 
-The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in this paper. Therefor to increase readability, this diameter will be referred to as 'wake diameter' or $D_w$. This diameter $D_w$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine. (For orientation see Figure \ref{fig:optim}.)
+The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in this paper. Therefor to increase readability, this diameter will be referred to as 'wake diameter' or $D_w$. This diameter $D_w$ increases proportionally with downwind distance $x$ (for orientation see Figure \ref{fig:wake}).
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
@@ -48,7 +49,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}.
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -60,7 +61,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %\noindent
 
 \subsubsection{Flow field} \label{sec:flowfield}
-FAST uses external input files for its simulations. One of these input files contains the flow field information. It contains the data of the wind flow as it falls on the turbine blades. This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
+The wind flow that falls on the turbine blades are inputted into FAST as flow fields. This is a 2-dimensional grid containing wind velocity data at the location of the wind turbine rotor-plane.
+
+This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
 \paragraph{Gaussian wake}
 FLORIS describes a discrete flow field of a wake, with three zones. The flow field of the wake in FLORIS is calculated with equations (\ref{eq:Dw} to \ref{eq:c}). The wake is divided into three zones as described in section \ref{wakemodel}. A real wake, however, does not have these discrete zones. To create a more fluent transition between the different wake-zones, a Gaussian distribution of the flow field is introduced\cite{Bastankhah2016}. The wake shape difference can be seen in Figure \ref{fig:disgaus}.  The Gaussian distribution is calculated as follows: 
@@ -135,7 +138,7 @@ The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-For the optimization, a trade off has to be made between power regulation and load minimization. This trade off is defined in a cost function \cite{Marden2013}\cite{Dijk2016}. The optimal turbine configuration, defined by the yaw and axial induction settings for all individual turbines, is found by minimization of this cost function. The optimization method used is game-theoretic approach\cite{Marden2013}. It preforms the simulation with different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
+For the optimization, a trade off has to be made between power regulation and load minimization. This trade off is defined in a cost function \cite{Marden2013, Dijk2016}. The optimal turbine configuration, defined by the yaw and axial induction settings for all individual turbines, is found by minimization of this cost function. The optimization method used is game-theoretic approach\cite{Marden2013}. It performs the simulation with different settings, searching for the best outcome. As further explained in section \ref{sec:gametheory}. 
  
 
 \subsubsection{Cost Function} \label{sec:costfunction}
