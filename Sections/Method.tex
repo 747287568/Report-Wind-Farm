@@ -2,7 +2,7 @@
 The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this is implemented.
 
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on the root of the turbine blades. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs). these are needed to be able to compare the damaging loads for the different cases \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
 \begin{figure*}
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.pdf}
@@ -49,7 +49,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the out of plane bending moments of the turbine blades, which are explained earlier in the method section. Since these out of plane bending moments fail to give direct information about the effect on the lifetime of a turbine, the program MLife is used to convert the bending moment to damage equivalent loads (DELs). These DELs are... \cite{Mlife}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model\cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum. Figure ?
+
+This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{Mlife} \cite{Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -78,7 +80,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 \sigma_y,\sigma_z = \frac{D_{w}}{n} 
 \end{equation}
 \\
-Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. (clearly note the importance of the relation between the Gaussian and the wakes from FLORIS!!) 
+Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. 
 
 \paragraph{Wind shear} \label{sec:windshear}
 Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
