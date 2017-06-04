@@ -1,13 +1,13 @@
 \section{Method} \label{sec:method}
-	The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
-	An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-	The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this in implemented \newline
+An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on a turbine. With the program MLife these bending moments are converted to a Damage Equivalent Load (DEL), which is a measure for the lifespan of a wind turbine \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are pre-calculated for different situations, which are specified by four parameters, and stored in a look-up-table (LUT) so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
-	\begin{figure}
-		\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
-		\caption{Overview of the optimization procedure.}
-		\label{fig:optim}
-	\end{figure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.png}
+	\caption{Overview of the optimization procedure.}
+	\label{fig:optim}
+\end{figure}
 
 
 %\noindent
@@ -26,7 +26,7 @@ FLORIS generates a wake model which divides the wake into three different zones 
 	\label{fig:wake}
 \end{figure}
 
-The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in the paper. for that reason, unless specified otherwise, is this what is meant when referred to a wake diameter. Also is the simplified notation $D_w$ is used for easer reeding. This diameter $D_w$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine. (For orientation see Figure \ref{fig:optim}.)
+The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. Let the $D_i$ denote the rotor diameter of the $i${\textsuperscript{th}} turbine, $k_e$ a coefficient that describes expansion of the zones, and $m_{e,q}$, the expansion factor as used by Gebraad \cite{Gebraad2016}. The diameter size of third wake zone $D_{w,q,i=3}$ is frequently used further in this paper. Therefor to increase readability, this diameter will be referred to as 'wake diameter' or $D_w$. This diameter $D_w$ increases proportionally with the longitudinal distance, downwind distance $x$, away from the wake-generating turbine. (For orientation see Figure \ref{fig:optim}.)
 \begin{equation}
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
@@ -52,14 +52,14 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{./Figures/PlotGausDiscWakeDWake180U6yaw0.png} %Plot with Gauss vs Discr flow, Dwake = 180, u_mean = 6, yaw = 0
+  \includegraphics[width=\linewidth]{./Figures/PlotGausDiscWakeDWake180U6yaw0.eps} %Plot with Gauss vs Discr flow, Dwake = 180, u_mean = 6, yaw = 0
   \caption{Discrete wake versus Gaussian wake} %for Dwake = 180 m, U = 6 m/s, and yaw = 0
   \label{fig:disgaus}
 \end{figure}
 
 %\noindent
 
-\subsubsection{Flow field}
+\subsubsection{Flow field} \label{sec:flowfield}
 FAST uses external input files for its simulations. One of these input files contains the flow field information. It contains the data of the wind flow as it falls on the turbine blades. This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
 \paragraph{Gaussian wake}
@@ -78,7 +78,7 @@ The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of t
 Where fit parameter $n$ can be modified to change the width of the Gaussian. Consequently, making it possible to fit a Gaussian to the wake zones of FLORIS (Figure \ref{fig:disgaus}). Future versions of FLORIS will also have this Gaussian distribution implemented. (clearly note the importance of the relation between the Gaussian and the wakes from FLORIS!!) 
 
 \paragraph{Wind shear} \label{sec:windshear}
-An other aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
+Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result of earths surface slowing the wind down closer to the ground. This results in a significant difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs\cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
 v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
@@ -109,32 +109,28 @@ where $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respecti
 
 \begin{table}[h]
 	%\renewcommand{\arraystretch}{1.3} 
-	\caption{Overview of the minimum value, maximum value, and step size of the parameters, diameter of outer wake zone (Dwake), free stream wind speed (U), yaw of the turbine (yaw), and the center to center distance between the center of the turbine and the center of the wake (y wake).}
+	\caption{Overview of the minimum value, maximum value, and step size of the parameters, the diameter of outer wake zone ($D_w$), the free stream wind speed ($U_{fs}$), the yaw of the turbine ($\gamma$) and the center to center distance between the center of the turbine and the center of the wake ($y_{C2C}$).}
 	\centering
 	\label{tab:pars}
 	\begin{tabular}{lccc}
 		\hline
 	 	& Minimum & Maximum & Step-size \\ 
 		\hline
-		Dwake & 180 & 330 & 25 \\
-		U & 6 & 8 & 2 \\
-		yaw & -30 & 30 & $^*$ \\
-		y wake & -250 & 250 & 10 \\
+		$D_w$ [m] & 180 & 330 & 25 \\
+		$U_{fs}$ [m/s] & 6 & 8 & 2 \\
+		$\gamma$ [$^\circ$] & -30 & 30 & $^*$ \\
+		$y_{C2C}$ [m] & -250 & 250 & 10 \\
 		\hline
 	\end{tabular}
-$^*$Input values for yaw are [-30, -10, -5, 0, 5, 10, 30].
+$^*$Input values are \{-30, -10, -5, 0, 5, 10, 30\}.
 \end{table}
 
 %\noindent
 \subsection{LUT} \label{sec:lut}
- To reduce computational time during optimization a look-up table (LUT) is created. The LUT is created using FAST and MLife, and it contains a a large number of DEL values for a wide variety of wind field conditions on a wind turbine.
-These different conditions are described by the ranges of the parameters, which can be seen in Table \ref{tab:pars}. The parameters are wake characteristics which can be extracted from FLORIS. The parameters chosen for the LUT are:\begin{itemize}
-	\item the free stream wind speed, U
-	\item the outer diameter of the wake, Dwake
-	\item the yaw of the turbine, yaw  
-	\item the center to center distance between the turbine and the wake, y wake 
-\end{itemize}   
- To save calculation time, the LUT parameters are discretized, given each parameter a certain step-size. This step-size is chosen such that interpolation will give a representative result. For each parameters step-sizes are selected, as shown in Table \ref{tab:pars}. With the use of the pre-calculated LUT, online optimization can be realized.
+It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are pre-calculated for a wide variety of wind field conditions and stored in a look-up-table (LUT).
+
+The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the LUT.
+
 
 
 
