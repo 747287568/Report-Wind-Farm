@@ -51,7 +51,7 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %(klopt deze cite nog met deze benaming?),-->
 \subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum.
 
-This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. This makes it possible to compare the different load spectra through the DELs, which are independent of other factors \cite{MLife,Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. This makes it possible to compare the different load spectra through the DELs, which are independent of other factors \cite{Wilson2017, MLife}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -140,7 +140,7 @@ The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
-For the optimization, a trade-off has to be made between power regulation and load minimization. This trade-off is defined in a cost function \cite{Marden2013, Dijk2016}, which is minimized using a game-theoretic approach \cite{Marden2013}. The goal is to find the optimal turbine configuration, meaning yaw and axial induction settings for each turbine.
+For the optimization, a trade-off has to be made between power regulation and load minimization. This trade-off is defined in a cost function \cite{Dijk2016, Marden2013}, which is minimized using a game-theoretic approach \cite{Marden2013}. The goal is to find the optimal turbine configuration, meaning yaw and axial induction settings for each turbine.
  
 
 \subsubsection{Cost Function} \label{sec:costfunction}
