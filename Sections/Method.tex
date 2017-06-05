@@ -32,11 +32,11 @@ D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
 
 The diameter of the third wake zone $D_{w,i,q=3}$ is frequently used further in this paper. To increase readability, this diameter will be referred to as 'wake diameter' or $D_w$. This diameter $D_w$ increases proportionally with downwind distance $x$ (for orientation see Figure \ref{fig:wake}).
-The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. The axial induction factor is a measure for the wind speed reduction behind a turbine relative to free stream wind velocity. The wake decay coefficient $c_{i,q}(x)$ describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation, the coefficient $m_{U,q}$ is a parameter that defines how quickly the wake decays for the different wake zones \cite{Gebraad2016}.
+The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i}(x,y)$ and the axial induction factor $a_i$. The axial induction factor is a measure for the wind speed reduction behind a turbine relative to free stream wind velocity. The wake decay coefficient $c_{i,q}(x)$ describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation, the coefficient $m_{U,q}$ is a parameter that defines how quickly the wake decays for the different wake zones \cite{Gebraad2016}.
 
 \begin{equation}
 \label{eq:Uw}
-U_{w,i}(x) = U_i\left( {1-2a_{i}c_{i,q}(x)} \right)
+U_{w,i}(x,y) = U_i\left( {1-2a_{i}c_{i}(x,y)} \right)
 \end{equation} 
 
 \begin{equation}
