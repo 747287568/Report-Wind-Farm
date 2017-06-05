@@ -162,14 +162,12 @@ The game-theoretic approach uses random perturbations on the yaw angles and the 
 
 \subsection{Case studies}
 \label{sec:Case studies}
-To verify the model a few cases were simulated.
+The goal of the optimization, as specified in Section \ref{sec:optimization}, is to track a reference power $P_{ref}$, while minimizing the DELs of the wind farm. Different cases are run to verify if the model can achieve this goal. First the currently used Greedy control method is simulated as a reference. In the cases hereafter $P_{ref}$ is varied as a percentage of a maximum possible power.
 
-First the so called 'Greedy control' Method was tested as a reference. This can be evaluated in a single iteration, with all axial induction factors set to one third and yaw to zero. 
+For the Greedy control method the yaw angles are set to zero and the axial induction factors to one third. 
 
-Secondly an optimization was executed taking only power into account. This to determine the maximum power that can be extracted of the wind farm. Here the parameter $c$ is set on one and $P_{ref}$ on 16 MW. 
+A case was run to determine the maximum possible power that can be extracted from the wind farm under the conditions used. The tuning parameter $c$ is set to one and $P_{ref}$ to a value known to be above the maximum possible power. 
 
-To verify if the model can successfully track the reference power, different cases as a percentage of the maximum power were run. Cases were run on 90\%, 80\%, 70\%, 60\% and 50\% of the maximum power.
+The actual reference tracking cases are run with tuning parameter $c = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned maximum power. These cases are evaluated for their ability to preform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in section \ref{sec:Simulation cases}.
 
-The results of these simulations can be found in section \ref{sec:Simulation cases}.
-
-Every simulation is started with a seed close to the reference power. And a certain step size?? Also a linear declining search sensitivity. 
+For every simulation the following optimization settings were used: $P_{bw} = 0.05 MW$, $DEL_{base} = 5.35E6$ and 50.000 iterations. 
