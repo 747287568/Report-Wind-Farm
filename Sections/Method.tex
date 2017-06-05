@@ -168,12 +168,6 @@ For the Greedy control method the yaw angles are set to zero and the axial induc
 
 A case was run to determine the maximum possible power that can be extracted from the wind farm under the conditions used. The tuning parameter $c$ is set to one and $P_{ref}$ to a value known to be above the maximum possible power. 
 
-The actual reference tracking cases are run with tuning parameter $c = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned maximum power. These cases are evaluated for their ability to preform reference tracking as well as their percentile reduction of DELs. 
+The actual reference tracking cases are run with tuning parameter $c = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned maximum power. These cases are evaluated for their ability to preform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in section \ref{sec:Simulation cases}.
 
-
-
-
-The results of these simulations can be found in section \ref{sec:Simulation cases}.
-
-Every simulation is started with a seed close to the reference power. And a certain step size?? Also a linear declining search sensitivity. 
-desnsity
+For every simulation the following optimization settings were used: $P_{bw} = 0.05 MW$, $DEL_{base} = 5.35E6$ and 50.000 iterations. 
