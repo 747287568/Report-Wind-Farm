@@ -17,24 +17,38 @@ As an example of the DEL values stored in the lookup table a visualization of a 
 	\label{fig:LUTsliceDw}
 \end{figure}
 
-\subsection{Simulation cases}
-\label{sec:Simulation cases}
-The two reference cases as described in section \ref{sec:Case studies} are shown in Table \ref{tab:Case results}. The cases with downgraded power are also shown in this table. The case with PREF on 90\% is shown as an example of the full optimization process. Figure \ref{fig:config90pct} shows the final turbine configuration for this optimization. 
+\subsection{Simulation cases} \label{sec:Simulation cases}
+The two reference cases as described in section \ref{sec:Case studies} are shown in Table \ref{tab:reference results}. 
+
+In Table \ref{tab:reference results} the results of the actual power reference tracking cases are shown. The error of the power relative to $P_{ref}$ is shown as a percentage of $P_{ref}$, furthermore the DEL reduction is shown as a percentage of the DELs from the Greedy control method. 
+
+The case with $P_{ref}$ at 90\% of $P_{max}$ is shown in Figure \ref{fig:optimization90pct} as an example of the full optimization process. The figure shows that the power converges to $P_{ref}$ as the iterations approach 50.000 while the DELs are decreasing. Figure \ref{fig:config90pct} shows the final turbine configuration for this optimization. 
 
 \begin{table*}[p]
 	\caption{Power and DEL values for greedy control and power-only optimization}
 	\centering
-	\label{tab:Case results}
-	\begin{tabular}{rrc}
+	\label{tab:reference results}
+	\begin{tabular}{rcc}
 		\hline
 		& Power [MW] & DELs \\ 
 		\hline
-		Greedy control & 12.42 & 13.22 \\
-		Maximum power & 5.94E7 & - \\
+		Greedy control & 12.42 & 5.94E7 \\
+		Maximum power & 13.22 & - \\
+	\end{tabular}
+\end{table*}
+
+\begin{table*}[p]
+	\caption{Reference tracking cases with $P_{ref}$ at different percentages of $P_{max}$.\\	
+		Displaying the percentile power error with the reference power, \\
+		and the percentile rereduction in loads compared to the Greedy control case.}
+	\centering
+	\label{tab:downgrade results}
+	\begin{tabular}{crc}
 		\hline
-		\% of 13.22 & Percentage Pref & Percentage DEL\\
+		$P_{ref}$ [\%]& Reference error [\%] & DEL reduction [\%]\\
 		\hline
 		100 & -9.8E-4 & +5.72 \\
+		95 & -2.4E-4 & -17.7 \\
 		90 & -8.4E-5 & -25.44 \\ %11.9
 		80 & -1E-6 & -27.01 \\ %10.576
 		70 & +3.2E-5 & -28.06 \\ %9.2

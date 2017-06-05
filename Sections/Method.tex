@@ -162,12 +162,12 @@ The game-theoretic approach uses random perturbations on the yaw angles and the 
 
 \subsection{Case studies}
 \label{sec:Case studies}
-The goal of the optimization, as specified in Section \ref{sec:optimization}, is to track a reference power $P_{ref}$, while minimizing the DELs of the wind farm. Different cases are run to verify if the model can achieve this goal. First the currently used Greedy control method is simulated as a reference. In the cases hereafter $P_{ref}$ is varied as a percentage of a maximum possible power.
+The goal of the optimization, as specified in Section \ref{sec:optimization}, is to track a reference power $P_{ref}$, while minimizing the DELs of the wind farm. Different cases are run to verify if the model can achieve this goal. First the currently used Greedy control method is simulated as a reference. In the cases hereafter $P_{ref}$ is varied as a percentage of a maximum possible power $P_{max}$.
 
 For the Greedy control method the yaw angles are set to zero and the axial induction factors to one third. 
 
-A case was run to determine the maximum possible power that can be extracted from the wind farm under the conditions used. The tuning parameter $c$ is set to one and $P_{ref}$ to a value known to be above the maximum possible power. 
+A case was run to determine $P_{max}$ that can be extracted from the wind farm under the conditions used. The tuning parameter $\delta$ is set to one and $P_{ref}$ to a value known to be above $P_{max}$. 
 
-The actual reference tracking cases are run with tuning parameter $c = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned maximum power. These cases are evaluated for their ability to preform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in section \ref{sec:Simulation cases}.
+The actual reference tracking cases are run with tuning parameter $\delta = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned $P_{max}$. These cases are evaluated for their ability to preform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in section \ref{sec:Simulation cases}.
 
 For every simulation the following optimization settings were used: $P_{bw} = 0.05 MW$, $DEL_{base} = 5.35E6$ and 50.000 iterations. 
