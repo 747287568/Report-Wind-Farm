@@ -49,9 +49,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among other things, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blade's orientation in the wind, which is a function of the turbine's rotation frequency. Compiling the RootMOops as a function of time results in a load spectrum.
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among other things, it computes the root out of plane bending moments (RootMOops) on turbine blades. RootMOops cyclically change with the blade's orientation in the wind, which is a function of the turbine's rotation frequency. Compiling the RootMOops as a function of time results in a load spectrum.
 
-The program MLife is used to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. This allows to compare the different load spectra through the DELs, which are independent of other factors \cite{Wilson2017, MLife}. 
+The program MLife is used to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, containing the same data as the load spectra do. However, all other dynamic load influencing factors are kept constant for each load spectrum. As such making it possible to compare the different load spectra \cite{Wilson2017, MLife}.
 
 
 \begin{figure}
