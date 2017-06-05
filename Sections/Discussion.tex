@@ -1,18 +1,17 @@
 \section{Conclusion, Discussion and Recommendations}
 This section presents a conclusion of the results. After which, this conclusion will be discussed and recommendations for future work are given. 
 \subsection{Conclusion}
-Power reduction by axial  induction and yaw control will lead to a reduction in the loads on the wind farm.
-This paper shows a model that regulates power while minimizing loads. This is done by varying the axial induction factors of the turbines and by yaw control. 
-It is shown that power tracking for the tested simulations stays within $1*10^{-4}\%$ range of the reference power. This range is very near the reference power and is, as such, a good result. While tracking the reference power, the loads were significantly reduced.
+This paper shows a model that regulates power while minimizing loads. This is done by axial induction control of the turbines and by yaw control. 
+It is shown that power tracking for the tested simulations stays within $10^{-4}\%$ range of the reference power. While tracking the reference power, the loads were significantly reduced.
 Additionally, with the precalculated lookup table, online use of the optimization can be used in wind farms to regulate its power output.
  
 
 \subsection{Discussion \& Recommendations}
-This paper, which presents the results of a multi-objective wind farm optimization through yaw control and axial induction control is bound to a number of limitations. Below, these are discussed and recommendations for future work are given.
+This paper, which presents the results of a multi-objective wind farm optimization through yaw and axial induction control can improved further. Below, these improvements are discussed and recommendations for future work are given.
 \begin{itemize}
-	\item During optimization, loads that are introduced by varying the axial induction factor of a turbine are not considered. This can change the outcome of the optimization. To resolve this issue, additional loads caused by varying the axial induction factor can be investigated and stored in the lookup table.
-	\item For the flow field, two recommendations can be given. FAST calculates the loads on the turbine based on a modeled flow field which does not take turbulence effects of the wake into account. Added turbulence effects can change the results of the optimization and should, as such, be included in future work. The shear constant was set for a flat ocean ground surface. To allow optimization for a wider range, different shear constants can be added to the lookup table.
-	\item While loads reduction is achieved, the cost function does not completely converge to a global minimum. This could be investigated in future work.
+	\item During optimization, loads that are introduced by varying the axial induction factor of a turbine are not considered. This can change the outcome of the optimization. To resolve this issue, these loads can be investigated and added to the lookup table.
+	\item Two recommendations can be given regarding the flow field. Firstly, FAST calculates the loads on the turbine based on a modeled flow field which does not take turbulence effects of the wake into account. Added turbulence effects can change the results of the optimization and should be included in future work. Secondly, the shear constant was set for a flat ocean ground surface. To allow optimization for a wider range, different shear constants can be added to the lookup table.
+	\item While load reduction is achieved, the cost function does not completely converge to a global minimum. This could be investigated in future work.
 	\item Misschien hier nog iets over die gekke waardes in de LUT
 \end{itemize}
 
