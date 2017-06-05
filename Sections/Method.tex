@@ -4,14 +4,11 @@ The optimization of power regulation while minimizing loads, requires a model th
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
 The power output of a wind farm as well as the wake development in the wind farm are estimated using the FLORIS model \cite{Gebraad2016} (Section \ref{sec:floris}). Given a certain wind field the program FAST calculates bending moments. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs) \ref{sec:fast}. These DELs are precalculated for different situations and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
-\begin{figure*}
+\begin{figure*}[h]
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.pdf}
 	\caption{Overview of the model used in this paper. For a random wind turbine configuration the summed power and summed DEL are evaluated and used as input for the cost function. If the resulting cost is the lowest yet, the wind turbine configuration is saved. Then a new configuration is generated and the process starts again.}
 	\label{fig:optim}
 \end{figure*}
-
-
-%\noindent
 
 \subsection{FLORIS} \label{sec:floris} The FLOw Redirection and Induction in Steady state (FLORIS) model is used to simulate the wind flow in a wind farm while also generating power output data. The model is a function of the yaw misalignment and the axial induction \cite{Gebraad2016}. FLORIS is a parametric model fitted to high-fidelity data from a computational fluid dynamics simulation, making it a relatively accurate model with low computation time \cite{Dijk2016}. 
 
@@ -52,9 +49,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among other things, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blade's orientation in the wind, which is a function of the turbine's rotation frequency. Compiling the RootMOops as a function of time results in a load spectrum.
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among other things, it computes the root out of plane bending moments (RootMOops) on turbine blades. RootMOops cyclically change with the blade's orientation in the wind, which is a function of the turbine's rotation frequency. Compiling the RootMOops as a function of time results in a load spectrum.
 
-The program MLife is used to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. This allows to compare the different load spectra through the DELs, which are independent of other factors \cite{Wilson2017, MLife}. 
+The program MLife is used to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, containing the same data as the load spectra do. However, all other dynamic load influencing factors are kept constant for each load spectrum. As such making it possible to compare the different load spectra \cite{Wilson2017, MLife}.
 
 
 \begin{figure}
@@ -173,7 +170,4 @@ A case is run to determine the maximum possible power $P_{max}$. The tuning para
 
 The actual reference tracking cases are run with tuning parameter $\delta = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned $P_{max}$. These cases are evaluated for their ability to perform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in Section \ref{sec:Simulation cases}.
 
-For every simulation the following optimization settings were used: $P_{bw} = 0.05$ MW, $DEL_{base} = 5.35E6$ N and 50,000 iterations. 
-
-The simulation is run on a... hier configuratio wind park.
-%All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+For every simulation a configuration of 9 NREL offshore 5-MW baseline wind turbines in a 3 by 3 formation is used. The y-distance between the turbines is 200 m, the x-distance between the first and second row is 700 m and between the second and third row 600 m. A robust distribution of wind directions between -12 and +12 degrees, with a wind velocity $U_{fs} = 8 m/s$ is used. The following optimization settings were used: $P_{bw} = 0.05$ MW, $DEL_{base} = 5.35E6$ N and 50,000 iterations. 
