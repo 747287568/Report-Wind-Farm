@@ -6,16 +6,13 @@ Through reference tracking a load reduction of at least 25\% can be achieved.
  
 A lookup table is created which contains DEL values that shows the effect of yaw misalignment on the yawed turbine. As illustrated in Figure \ref{fig:LUTsliceC2C} yawing has a significant effect on the loads of the turbine.
 
-
- 
-
 \subsection{Discussion \& Recommendations}
 This paper, which presents the results of a multi-objective wind farm optimization through yaw and axial induction control can improved further. Below, these improvements are discussed and recommendations for future work are given.
 \begin{itemize}
 	\item During optimization, loads that are introduced by varying the axial induction factor of a turbine are not considered. This can change the outcome of the optimization. To resolve this issue, these loads can be investigated and added to the lookup table.
-	\item Two recommendations can be given regarding the flow field. Firstly, FAST calculates the loads on the turbine based on a modeled flow field which does not take turbulence effects of the wake into account. Added turbulence effects can change the results of the optimization and should be included in future work. Secondly, the shear constant was set for a flat ocean ground surface. To allow optimization for a wider range, different shear constants can be added to the lookup table.
+	\item FAST calculates the loads on the turbine based on a modeled flow field which does not take turbulence effects into account. The results from FAST are very sensitive to small changes in wind speed, as occurs with turbulence. In one slice of the LUT this sensitivity became apparent in the form of incorrect peaks. These peaks were smoothed out and had no effect on the eventual results of the optimization. 
+	\item The shear constant was set for a flat ocean ground surface. To allow optimization for a wider range, different shear constants can be added to the lookup table.
 	\item While load reduction is achieved, the cost function does not completely converge to a global minimum. This could be investigated in future work.
-	\item Misschien hier nog iets over die gekke waardes in de LUT
 \end{itemize}
 
   
