@@ -1,8 +1,8 @@
 \section{Method} \label{sec:method}
-The optimization of power regulation while minimizing loads, requires a model that can describe the power output and the loads of a wind farm. This section describes how this is implemented.
+The optimization of power regulation while minimizing loads, requires a model that can predict the power output and the loads of a wind farm. This section describes how this is implemented.
 
 An overview of the optimization procedure used is illustrated in Figure \ref{fig:optim}.
-The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{FLORIS} (Section \ref{sec:floris}). Given a certain inflow profile the program FAST calculates the out of plane bending moments on the root of the turbine blades. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs). These will be used for damage comparison of the flow profiles \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations, which are specified by four parameters, and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
+The power output of a wind farm as well as the wake propagation in this wind farm are calculated using the FLORIS model \cite{Gebraad2016} (Section \ref{sec:floris}). Given a certain wind field the program FAST calculates bending moments on the root of the turbine blades. The program MLife is used to convert these bending moments into short-term Damage Equivalent Loads (DELs). These will be used for damage comparison of the flow profiles \cite{MLife}. Both FAST and MLife are covered in Section \ref{sec:fast}. These DELs are precalculated for different situations and stored in a lookup table so it can be quickly retrieved during optimization (Section \ref{sec:lut}). The optimization algorithm uses a cost function that combines the DEL and power data to find the optimal wind turbine configuration that has minimal loads while tracking a predefined reference power (Section \ref{sec:optimization}).
 
 \begin{figure*}
 	\includegraphics[width=\linewidth]{./Figures/OptimizationProcess.pdf}
@@ -18,7 +18,7 @@ The power output of a wind farm as well as the wake propagation in this wind far
 \subsubsection{Wake modelling}
 \label{wakemodel}
 %As can be seen in Figure \ref{fig:wake}, 
-FLORIS contains a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are denoted by $q$ and defined as the near wake ($q$=1), the far wake ($q$=2) and the mixing zone ($q$=3). Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations \ref{eq:Dw} to \ref{eq:c}. 
+FLORIS contains a wake model which divides the wake into three different zones as shown in Figure \ref{fig:wake}. These zones are denoted by $q_i$ and defined as the near wake ($q$=1), the far wake ($q$=2) and the mixing zone ($q$=3). Each zone has its own function for the zone diameter and wind speed, which are calculated by FLORIS using Equations \ref{eq:Dw} to \ref{eq:c}. 
 
 
 \begin{figure}
@@ -32,7 +32,7 @@ The diameter sizes of the wake zones are calculated using Equation \ref{eq:Dw}. 
 \label{eq:Dw}
 D_{w,i,q}(x) = max({D_i + 2k_em_{e,q}([x - X_i],0} )
 \end{equation}
-The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. This axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation is the model parameter $M_{U,q}$ a ...depended of the wake zones and yaw angle \cite{Gebraad2016}. And the $X_i$ is ... ?
+The velocity in the wake is related to this downwind distance $x$ as well, see Equation \ref{eq:Uw}. Here the wake velocity is an argument of the wake decay coefficient $c_{i,q}(x)$ and the axial induction factor $a_i$. The axial induction factor is a measure for the wind speed reduction behind a turbine relative to its own rotor speed. The wake decay coefficient describes the decay of velocity for each wake zone and is defined in Equation \ref{eq:c}. In this equation, the coefficients $m_{U,q}$ are parameters that define the wake decay for the wake different zones \cite{Gebraad2016}.
 
 \begin{equation}
 \label{eq:Uw}
@@ -49,9 +49,9 @@ c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 %//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
 %\noindent
 %(klopt deze cite nog met deze benaming?),-->
-\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum. Figure ?
+\subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among others, it computes the root out of plane bending moments (RootMOops) of turbine blades. RootMOops cyclically change with the blades orientation in the wind, which is a function of the turbines turning frequency. Compiling the RootMOops as a function of time gives a load spectrum.
 
-This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. Making it possible to compare the different load spectra through de DELs which are now independent of other factors \cite{MLife,Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
+This paper uses the program MLife to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, for which a frequency is defined that is kept equal for all load spectra. This makes it possible to compare the different load spectra through the DELs, which are independent of other factors \cite{MLife,Wilson2017}. All simulations are performed on the NREL offshore 5-MW baseline wind turbine \cite{Jonkman2005}.
 
 
 \begin{figure}
@@ -63,7 +63,7 @@ This paper uses the program MLife to convert these load spectra into short-term 
 %\noindent
 
 \subsubsection{Flow field} \label{sec:flowfield}
-The wind flow that falls on the turbine blades are inputted into FAST as flow fields. This is a 2-dimensional grid containing wind velocity data at the location of the wind turbine rotor-plane.
+The wind flow that falls on the turbine blades are the input FAST uses to calculate the loads. This is a 2-dimensional grid containing wind velocity data at the location of the wind turbine rotor-plane.
 
 This study made this wind data more representative for real life by implementing both a more realistic wake distribution, the Gaussian distribution, as well as natural phenomena, the shear effect.
 
@@ -74,7 +74,7 @@ FLORIS describes a discrete flow field of a wake, with three zones. The flow fie
 \label{eq:gaus}
 G(y, z) = A [e^{-(\frac{y^2}{2\sigma_y} + \frac{z^2}{2\sigma_z})}]
 \end{equation}
-The amplitude of the Gaussian, $A$, is set to be equal to the velocity loss of the inner wake zone, $U_{w,1}$, as generated by FLORIS. $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. These standard deviations are related wake diameter $D_{w}$ following Equation \ref{eq:sigm},
+The amplitude of the Gaussian, $A$, is equal to the velocity loss of the inner wake zone, $U_{w,1}$, as generated by FLORIS. $\sigma_y$ and $\sigma_z$ reflect the Gaussian standard deviation in horizontal and vertical direction, respectively. These standard deviations are related wake diameter $D_{w}$ following Equation \ref{eq:sigm},
 \begin{equation}
 \label{eq:sigm}
 \sigma_y,\sigma_z = \frac{D_{w}}{n} 
@@ -131,9 +131,9 @@ $^* \gamma$ has no constant step-size. The input values are: \{-30, -20, -10, -5
 
 %\noindent
 \subsection{Lookup table} \label{sec:lut}
-It takes approximately 3 minutes, on the hardware available to us, to calculate a DEL for a single wind turbine. Therefore, to reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table.
+To reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table.
 
-The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the lookup table.
+The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for every situation needed. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL on a turbine, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the lookup table.
 
 The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$, $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equation \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the hub height of the wind turbines, the z-location of the wake center is placed at that height. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field, as illustrated in Figure \ref{fig:windshear}, is defined. The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen so that all required situations are included within the lookup table.
 
