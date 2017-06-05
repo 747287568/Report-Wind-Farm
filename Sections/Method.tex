@@ -89,7 +89,7 @@ Where fit parameter $n$ can be modified to change the width of the Gaussian. Con
 Another aspect added to improve the accuracy of the wind data is wind shear. This natural phenomenon is the result the earth's surface slowing the wind down closer to the ground. This results in a difference in wind speed over the height ranges of the turbine, which has a significant effect on the DELs \cite{Firtin2011}.  The velocity distribution is calculated as follows: 
 \begin{equation}
 \label{eq:shear}
-v = v_{ref} \left[\frac{h}{h_{ref}}\right]^\alpha
+v = v_{ref} \left(\frac{h}{h_{ref}}\right)^\alpha
 \end{equation}
 Here $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectively. Value $\alpha$ is the wind shear coefficient which depends on different factors. The coefficient $\alpha$  reflects terrain type, and is for this paper fixed at value 0.1 representing a surface close to ocean and smooth ground \cite{Firtin2011}. Figure \ref{fig:windshear} shows the flow fields of a wake both before and after the implementation of wind shear.
 
