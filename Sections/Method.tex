@@ -161,6 +161,16 @@ To obtain power production close to the reference, the power part of the cost fu
 \subsubsection{Game Theory} \label{sec:gametheory}
 The game-theoretic approach uses random perturbations on the yaw angles and the axial induction factors to minimize the cost function. When new values for yaw and axial induction settings give an improvement regarding the cost function, the settings are saved and the process will be repeated with the new settings. Because of the fact it uses random perturbations, the game theoretic approach is an adequate optimizer to find the global minimum of the cost function \cite{Dijk2016}.
 
+\subsection{Case studies}
+\label{sec:Case studies}
+To verify the model a few cases were simulated.
 
+First the so called 'Greedy control' Method was tested as a reference. This can be evaluated in a single iteration, with all axial induction factors set to one third and yaw to zero. 
 
+Secondly an optimization was executed taking only power into account. This to determine the maximum power that can be extracted of the wind farm. Here the parameter $c$ is set on one and $P_{ref}$ on 16 MW. 
 
+To verify if the model can successfully track the reference power, different cases as a percentage of the maximum power were run. Cases were run on 90\%, 80\%, 70\%, 60\% and 50\% of the maximum power.
+
+The results of these simulations can be found in section \ref{sec:Simulation cases}.
+
+Every simulation is started with a seed close to the reference power. And a certain step size?? Also a linear declining search sensitivity. 
