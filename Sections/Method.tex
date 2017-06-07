@@ -44,11 +44,6 @@ U_{w,i}(x,y) = U_i\left( {1-2a_{i}c_{i}(x,y)} \right)
 c_{i,q}(x) = \left[ \frac{D_i}{D_i + 2k_em_{U,q}(\gamma_i)[x - X_i]} \right]^2
 \end{equation}
 
-
-
-%//programming tool for the simulation of dynamic (load) responses of wind turbines (by NREL) 
-%\noindent
-%(klopt deze cite nog met deze benaming?),-->
 \subsection{FAST \& MLife} \label{sec:fast} FAST is a dynamic turbine model \cite{Jonkman2005}. Among other things, it computes the root out of plane bending moments (RootMOops) on turbine blades. RootMOops cyclically change with the blade's orientation in the wind, which is a function of the turbine's rotation frequency. Compiling the RootMOops as a function of time results in a load spectrum.
 
 The program MLife is used to convert these load spectra into short-term damage equivalent loads (DELs). A DEL is a constant amplitude fatigue-load, containing the same data as the load spectra do. However, all other dynamic load influencing factors are kept constant for each load spectrum. As such making it possible to compare the different load spectra \cite{Wilson2017, MLife}.
@@ -108,9 +103,6 @@ Here $v$ and $v_{ref}$ are the velocity at heights $h$, and $h_{ref}$  respectiv
 	\label{fig:windshear}
 \end{figure}
 
-
-
-
 \begin{table}[h]
 	%\renewcommand{\arraystretch}{1.3} 
 	\caption{Overview of the minimum value, maximum value, and step size of the parameters: diameter of the wake ($D_w$), free stream wind speed ($U_{fs}$), yaw of the turbine ($\gamma$) and the center to center distance between the center of the turbine and the center of the wake ($y_{C2C}$).}
@@ -134,9 +126,9 @@ $^* \gamma$ has no constant step-size. The input values are: \{-30, -20, -10, -5
 \subsection{Lookup table} \label{sec:lut}
 To reduce computational time during optimization the DELs are precalculated for a wide variety of wind field conditions and stored in a lookup table.
 
-The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for multiple situations. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. To estimate a DEL on a turbine, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the lookup table.
+The loads on a wind turbine can be approximated as a function of the parameters $D_w$, $U_{fs}$, $\gamma$ and $y_{C2C}$. These parameters are varied in simulations to calculate the DELs for multiple situations. The minimum value, maximum value and step size chosen for each parameters can be seen in Table \ref{tab:pars}. This results in a 4-dimensional matrix containing 6426 DELs. 
 
-The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$ and $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equation \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the hub height of the wind turbines, the z-location of the wake center is placed at that height. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field, as illustrated in Figure \ref{fig:windshear}, is defined. The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen such that all required situations are included within the lookup table.
+The Gaussian wake, as described in Equation \ref{eq:gaus}, is fully defined by $D_w$ and $U_{fs}$. Downstream distance $x$ can be calculated with $D_w$ by rewriting Equation \ref{eq:Dw}. The amplitude $A$ can then be calculated with Equations \ref{eq:Uw} and \ref{eq:c}. Standard deviations $\sigma_y$ and $\sigma_z$ follow from Equation \ref{eq:sigm}. Since FLORIS only considers the wake behavior at the hub height of the wind turbines, the z-location of the wake center is placed at that height. The center-to-center distance $y_{C2C}$ determines the y-location of the wake center. With this information an entire flow field, as illustrated in Figure \ref{fig:windshear}, is defined. The flow field together with yaw angle $\gamma$ are used as input for FAST. The range of each parameter is chosen such that all required situations are included within the lookup table. To estimate a DEL on a turbine, the value of each parameter is retrieved from FLORIS and used to linearly interpolate in the lookup table.
 
 %\noindent
 \subsection{Optimization} \label{sec:optimization}
@@ -170,4 +162,4 @@ A case is run to determine the maximum possible power $P_{max}$. The tuning para
 
 The actual reference tracking cases are run with tuning parameter $\delta = 0.5$, varying $P_{ref}$ as a percentage of the above mentioned $P_{max}$. These cases are evaluated for their ability to perform reference tracking as well as their percentile reduction of DELs. The results of these simulations can be found in Section \ref{sec:Simulation cases}.
 
-For every simulation a configuration of 9 NREL offshore 5-MW baseline wind turbines in a 3 by 3 formation is used. The y-distance between the turbines is 200 m, the x-distance between the first and second row is 700 m and between the second and third row 600 m. A robust distribution of wind directions between -12 and +12 degrees, with a wind velocity $U_{fs} = 8 m/s$ is used. The following optimization settings were used: $P_{bw} = 0.05$ MW, $DEL_{base} = 5.35E6$ N and 50,000 iterations. 
+For every simulation a configuration of 9 NREL offshore 5-MW baseline wind turbines in a 3 by 3 formation is used \cite{Jonkman2009}. The y-distance between the turbines is 200 m, the x-distance between the first and second row is 700 m and between the second and third row 600 m. A robust distribution of wind directions between -12 and +12 degrees, with a wind velocity $U_{fs} = 8 m/s$ is used. The following optimization settings were used: $P_{bw} = 0.05$ MW, $DEL_{base} = 5.35E6$ N and 50,000 iterations. 

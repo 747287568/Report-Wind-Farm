@@ -3,13 +3,6 @@
 \subsection{Lookup table}
 In Figure \ref{fig:LUTsliceC2C} a visualization of a slice with a $D_{w}$ of 230 m and a $U_{fs}$ of 8 m/s is shown. When looking at the $y_{C2C}$ it can be seen that DELs are significantly higher with partial wake overlap, but with larger negative $\gamma$ this effect is less extreme. Slices for other values of $D_{w}$ and $U_{fs}$ show similar behavior. In Figure \ref{fig:LUTsliceDw} a slice with a $y_{C2C}$ of 0 m and a $U_{fs}$ of 8 m/s is shown. Here it can be seen that the effect of yaw is not symmetrical around $\gamma$ at 0 deg. It is also noticeable that the lowest DEL is around $\gamma$ at 10 deg to 20 deg.
 
-\subsection{Simulation cases} \label{sec:Simulation cases}
-The two reference cases as described in Section \ref{sec:Case studies} are shown in Table \ref{tab:reference results}. 
-
-In Table \ref{tab:downgrade results} the results of the power reference tracking cases are shown. The reference error, the absolute difference between the power and $P_{ref}$, is shown as a percentage of $P_{ref}$. Furthermore, the DEL reduction is shown as a percentage of the DELs of the greedy control method. 
-
-As an example of the full optimization process, the case with $P_{ref}$ at 90\% of $P_{max}$ is shown in Figure \ref{fig:optimization90pct}. The figure shows that the power converges to $P_{ref}$ as the iterations approach 50,000 while the DELs are decreasing. Figure \ref{fig:config90pct} shows the final turbine configuration for this optimization. 
-
 \begin{figure}
 	\includegraphics[width=\linewidth]{./Figures/LUTslice_Dw230_Ufs8.eps}
 	\caption{Slice of the lookup table with a $D_{w}$ of 230 m and a $U_{fs}$ of 8 m/s. }
@@ -22,7 +15,14 @@ As an example of the full optimization process, the case with $P_{ref}$ at 90\% 
 	\label{fig:LUTsliceDw}
 \end{figure}
 
-\begin{table}[t]
+\subsection{Simulation cases} \label{sec:Simulation cases}
+The two reference cases as described in Section \ref{sec:Case studies} are shown in Table \ref{tab:reference results}. 
+
+In Table \ref{tab:downgrade results} the results of the power reference tracking cases are shown. The reference error, the absolute difference between the power and $P_{ref}$, is shown as a percentage of $P_{ref}$. Furthermore, the DEL reduction is shown as a percentage of the DELs of the greedy control method. 
+
+As an example of the full optimization process, the case with $P_{ref}$ at 90\% of $P_{max}$ is shown in Figure \ref{fig:optimization90pct}. The figure shows that the power converges to $P_{ref}$ as the iterations approach 50,000 while the DELs are decreasing. Figure \ref{fig:config90pct} shows the final turbine configuration for this optimization. 
+
+\begin{table}
 	\caption{Power and DEL values for greedy control and power-only optimization}
 	\centering
 	\label{tab:reference results}
@@ -30,13 +30,13 @@ As an example of the full optimization process, the case with $P_{ref}$ at 90\% 
 		\hline
 		& Power [MW] & DELs [Nm] \\ 
 		\hline
-		greedy control & 12.42 & 5.94E7 \\
-		Maximum power & 13.22 & - \\
+		Greedy control & 12.42 & 5.94E7 \\
+		Power-only & 13.22 & 6.38E7 \\
 		\hline
 	\end{tabular}
 \end{table}
 
-\begin{table}[t]
+\begin{table}
 	\caption{Reference tracking cases with $P_{ref}$ at different percentages of $P_{max}$ = 13.22 MW.\\	
 		Displaying the percentile power error to the reference power, and the percentile reduction in loads, $\Delta$ DEL, compared to the greedy control case.}
 	\centering
@@ -66,7 +66,7 @@ As an example of the full optimization process, the case with $P_{ref}$ at 90\% 
 
 \begin{figure*}
 	\centering
-	\includegraphics[width=0.85\linewidth]{./Figures/{Optimization_Pref11.9}.eps}
+	\includegraphics[width=0.9\linewidth]{./Figures/{Optimization_Pref11.9}.eps}
 	\caption{Loads (in red) and power (in blue) during optimization with $P_{ref}$ at 90\%. The dotted line is $P_{bw}$.}
 	\label{fig:optimization90pct}
 \end{figure*}
